@@ -74,8 +74,9 @@ header{position:sticky;top:0;z-index:40;background:rgba(241,239,234,.96);backdro
 
 /* ===== Colección: mosaico vertical (masonry) ===== */
 .cab{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.cab p{min-height:3rem} /* misma altura de texto en ES/EN: los filtros no cambian de lugar al traducir */
 .filtros{display:flex;gap:.5rem;flex-wrap:wrap}
-.filtros button{background:none;border:1px solid var(--lin);color:var(--txt);font:inherit;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1rem;cursor:pointer}
+.filtros button{background:none;border:1px solid var(--lin);color:var(--txt);font:inherit;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1rem;cursor:pointer;min-width:8.2rem;text-align:center}
 .filtros button[aria-pressed="true"]{background:var(--txt);color:var(--bg);border-color:var(--txt)}
 .total{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt2);margin-bottom:1.4rem}
 .masonry{column-count:4;column-gap:1.4rem}
