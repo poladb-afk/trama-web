@@ -56,11 +56,12 @@ header{position:sticky;top:0;z-index:40;background:rgba(241,239,234,.96);backdro
 .nav ul a{text-decoration:none;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
 .nav ul a:hover{color:var(--salvia)}
 .menu-btn{display:none;background:none;border:0;color:var(--txt);font:inherit;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
-.lang{display:flex;align-items:center;gap:.05rem;font-size:.72rem;letter-spacing:.12em;margin-left:auto}
+.lang{display:flex;align-items:center;gap:.35rem;font-size:.72rem;letter-spacing:.12em;margin-left:auto}
 .nav ul + .lang{margin-left:0}
-.lang button{background:none;border:0;color:var(--txt2);font:inherit;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:.2rem .2rem}
-.lang button[aria-pressed="true"]{color:var(--txt);text-decoration:underline;text-underline-offset:4px}
-.lang i{color:var(--txt2);font-style:normal}
+.lang button{background:none;border:1px solid var(--lin);color:var(--txt2);font:inherit;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;padding:.35rem .7rem;border-radius:2px}
+.lang button:hover{color:var(--txt);border-color:var(--txt)}
+.lang button[aria-pressed="true"]{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.lang i{display:none}
 
 /* ===== Inicio ===== */
 .inicio{border-top:0;padding-top:clamp(1.5rem,3vw,2.5rem)}
