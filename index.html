@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trama Textiles · Alfombras hechas a mano · San Telmo, Buenos Aires</title>
+<meta name="description" content="Alfombras de diseño hechas a mano en fibras naturales. Galería privada en San Telmo, Buenos Aires. Visitas con cita previa.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%236B4B42'/%3E%3Cpath d='M25 54H34M29.5 54V66M41 66V54H46a3.2 3.2 0 0 1 0 6.4H41M45.5 60.4L49.5 66M56 66L60.5 54L65 66M72 66V54L77 62L82 54V66M89 66L93.5 54L98 66' transform='translate(-1.5 0)' fill='none' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Paleta Piedra & Salvia ===== */
+:root{
+  --bg:#F1EFEA;      /* fondo piedra claro */
+  --sup:#E2E0D8;     /* superficies */
+  --lin:#C4C3B6;     /* líneas */
+  --salvia:#7F8A76;  /* acento */
+  --logo:#6B4B42;    /* marrón del logo */
+  --txt:#2B2D28;     /* texto */
+  --txt2:#62655C;    /* texto secundario */
+  --sans:'Jost','Helvetica Neue',Arial,sans-serif;
+  --max:1440px;
+  --ease:cubic-bezier(.2,.6,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:17px}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+section{padding:clamp(4rem,8vw,6.5rem) 0;border-top:1px solid var(--lin)}
+.rotulo{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--salvia);font-weight:400}
+h1,h2{font-weight:300;line-height:1.15;letter-spacing:.005em}
+h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin:.4rem 0 1rem}
+p{max-width:64ch;color:var(--txt2)}
+.btn{display:inline-block;font:400 .72rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;
+  padding:1.05rem 2rem;background:var(--txt);color:var(--bg);border:1px solid var(--txt);cursor:pointer;transition:background .3s}
+.btn:hover{background:var(--logo);border-color:var(--logo)}
+.btn.linea{background:transparent;color:var(--txt)}
+.btn.linea:hover{background:var(--txt);color:var(--bg)}
+
+/* ===== Fotos: ilustración provisoria + foto real encima ===== */
+.foto{position:relative;overflow:hidden;background:var(--sup)}
+.foto .ilu{position:absolute;inset:0;width:100%;height:100%;display:block}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.foto .ilu,.foto img{transition:transform 1s var(--ease)}
+
+/* ===== Logo ===== */
+.logo{display:block;width:66px;height:66px}
+.logo svg{width:100%;height:100%;display:block}
+
+/* ===== Header ===== */
+header{position:sticky;top:0;z-index:40;background:rgba(241,239,234,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--lin)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:84px}
+.nav ul{display:flex;gap:2.2rem;list-style:none}
+.nav ul a{text-decoration:none;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
+.nav ul a:hover{color:var(--salvia)}
+.menu-btn{display:none;background:none;border:0;color:var(--txt);font:inherit;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+
+/* ===== Inicio ===== */
+.inicio{border-top:0;padding-top:clamp(1.5rem,3vw,2.5rem)}
+.inicio .foto{aspect-ratio:21/9;min-height:320px}
+.inicio-txt{display:grid;grid-template-columns:1.25fr 1fr;gap:3rem;align-items:end;margin-top:2.2rem}
+.inicio h1{font-size:clamp(1.8rem,3.4vw,2.7rem);margin:.5rem 0 1rem}
+.datos-rapidos{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem 2rem;border-top:1px solid var(--lin);padding-top:1.2rem}
+.datos-rapidos dt{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia)}
+.datos-rapidos dd{font-size:.92rem}
+
+/* ===== Colección: mosaico vertical (masonry) ===== */
+.cab{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.2rem}
+.filtros{display:flex;gap:.5rem;flex-wrap:wrap}
+.filtros button{background:none;border:1px solid var(--lin);color:var(--txt);font:inherit;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.55rem 1rem;cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--txt);color:var(--bg);border-color:var(--txt)}
+.total{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt2);margin-bottom:1.4rem}
+.masonry{column-count:4;column-gap:1.4rem}
+.pieza{break-inside:avoid;display:block;width:100%;margin-bottom:1.8rem;background:none;border:0;padding:0;text-align:left;color:inherit;font:inherit;cursor:pointer}
+.pieza .foto{border-radius:2px}
+.pieza:hover .foto .ilu,.pieza:hover .foto img{transform:scale(1.035)}
+.pieza:focus-visible{outline:1px solid var(--salvia);outline-offset:5px}
+.cartela{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-top:.7rem}
+.cartela strong{font-weight:400;font-size:1rem}
+.cartela span{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);white-space:nowrap}
+.cartela-sub{font-size:.78rem;color:var(--txt2)}
+.pieza.oculta{display:none}
+
+/* ===== Ficha técnica ===== */
+dialog{border:0;padding:0;margin:auto;width:min(1240px,94vw);max-height:92vh;background:var(--bg);color:var(--txt)}
+dialog::backdrop{background:rgba(30,32,28,.7)}
+.ficha{display:grid;grid-template-columns:1.55fr 1fr;gap:2.4rem;padding:2rem;max-height:92vh;overflow:auto}
+.visor{display:grid;gap:.8rem;align-content:start}
+.principal{aspect-ratio:4/3;cursor:zoom-in}
+.minis{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.mini{aspect-ratio:4/3;border:0;padding:0;cursor:pointer;display:block;width:100%}
+.mini:hover{outline:1px solid var(--txt);outline-offset:2px}
+.etq{position:absolute;left:0;bottom:0;z-index:2;background:var(--bg);color:var(--txt);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:.4rem .75rem}
+.ficha-datos{display:flex;flex-direction:column}
+.ficha-top{display:flex;justify-content:space-between;align-items:flex-start}
+.cerrar{background:none;border:0;color:var(--txt);font:inherit;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.ficha h2{margin:.3rem 0 .3rem}
+.ref{font-size:.7rem;letter-spacing:.16em;color:var(--txt2)}
+.tecnica{margin:1.5rem 0;border-top:1px solid var(--txt)}
+.fila{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--lin)}
+.fila.full{grid-template-columns:1fr}
+.dato{padding:.8rem 0}
+.dato dt{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia)}
+.dato dd{font-size:1.04rem}
+.comparar{display:flex;gap:.9rem;margin-top:.8rem;align-items:flex-start}
+.comparar .lbl{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt2);width:5.2rem;padding-top:.2rem;line-height:1.5}
+.nudo{width:86px;background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.nudo .foto{width:86px;height:86px}
+.nudo small{display:block;font-size:.66rem;line-height:1.3;margin-top:.35rem;color:var(--txt2)}
+.nudo:hover small{color:var(--txt)}
+.ficha-acc{margin-top:auto;display:grid;gap:1rem}
+.ficha-acc .btn{text-align:center}
+.pager{display:flex;justify-content:space-between}
+.pager button{background:none;border:0;color:var(--txt2);font:inherit;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+.pager button:hover{color:var(--txt)}
+.zoom{position:fixed;inset:0;z-index:100;background:rgba(25,26,23,.94);display:none;align-items:center;justify-content:center;padding:4vw;cursor:zoom-out}
+.zoom.on{display:flex}
+.zoom .foto{width:min(1200px,100%);aspect-ratio:4/3;max-height:100%}
+
+/* ===== Próximos ingresos ===== */
+.ingresos{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.ingreso .foto{aspect-ratio:1}
+.ingreso dl{margin-top:.8rem;font-size:.85rem}
+.ingreso dt{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia)}
+.ingreso dd{color:var(--txt2)}
+.ingreso dd strong{font-weight:400;color:var(--txt)}
+
+/* ===== Quiénes somos ===== */
+.nos{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+.nos .foto{aspect-ratio:4/5}
+.lista{list-style:none;border-top:1px solid var(--lin);margin:1.5rem 0}
+.lista li{display:grid;grid-template-columns:10rem 1fr;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--lin);font-size:.92rem}
+.lista li b{font-weight:400;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia);padding-top:.2rem}
+
+/* ===== Contacto ===== */
+.contacto{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(2rem,5vw,5rem)}
+form{display:grid;gap:1.3rem;align-content:start}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
+.campo{display:grid;gap:.25rem}
+label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--salvia)}
+input,select,textarea{font:inherit;color:var(--txt);background:transparent;border:0;border-bottom:1px solid var(--lin);padding:.55rem 0;outline:none;border-radius:0}
+input:focus,select:focus,textarea:focus{border-color:var(--txt)}
+footer{border-top:1px solid var(--lin);padding:2rem 0;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer .logo{width:44px;height:44px}
+footer a{text-decoration:none}
+
+@media (max-width:1200px){.masonry{column-count:3}}
+@media (max-width:900px){
+  .masonry{column-count:2}.ingresos{grid-template-columns:repeat(2,1fr)}
+  .nav ul{display:none;position:absolute;top:84px;left:0;right:0;background:var(--bg);flex-direction:column;gap:0;padding:.5rem 1.5rem 1rem;border-bottom:1px solid var(--lin)}
+  .nav ul.abierto{display:flex}.nav ul a{display:block;padding:.8rem 0}
+  .menu-btn{display:block}
+  .inicio-txt,.nos,.contacto,.ficha{grid-template-columns:1fr}
+  .ficha{padding:1.2rem}.dos{grid-template-columns:1fr}.lista li{grid-template-columns:1fr;gap:.2rem}
+}
+@media (max-width:520px){.masonry{column-count:1}.ingresos{grid-template-columns:1fr}.datos-rapidos{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- Logo TRAMA (círculo marrón, letras blancas). Para usar el archivo original: reemplazar el <svg> por <img src="img/logo.svg" alt="Trama"> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo-trama" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="60" fill="#6B4B42"/>
+    <path transform="translate(-1.5 0)" fill="none" stroke="#fff" stroke-width="1.7"
+      d="M25 54H34M29.5 54V66 M41 66V54H46a3.2 3.2 0 0 1 0 6.4H41M45.5 60.4L49.5 66 M56 66L60.5 54L65 66 M72 66V54L77 62L82 54V66 M89 66L93.5 54L98 66"/>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio" class="logo" aria-label="Trama Textiles · inicio"><svg role="img" aria-label="Trama"><use href="#logo-trama"/></svg></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menú</button>
+    <ul id="menu">
+      <li><a href="#coleccion">Colección</a></li>
+      <li><a href="#ingresos">Próximos ingresos</a></li>
+      <li><a href="#nosotros">Quiénes somos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== INICIO ===== -->
+<section class="inicio" id="inicio">
+  <div class="wrap">
+    <div class="foto" id="portada" data-img="img/portada.jpg"></div>
+    <div class="inicio-txt">
+      <div>
+        <span class="rotulo">Trama Textiles · Buenos Aires</span>
+        <h1>Alfombras de diseño hechas a mano, en fibras naturales.</h1>
+        <p>Alfombras artesanales producidas en talleres de India y Medio Oriente. La venta es presencial, en nuestra galería privada de San Telmo, con cita previa. Ofrecemos asesoramiento personalizado y hacemos envíos.</p>
+      </div>
+      <dl class="datos-rapidos">
+        <div><dt>Materiales</dt><dd>Lana, yute, algodón y seda</dd></div>
+        <div><dt>Producción</dt><dd>Artesanal, tejida o anudada a mano</dd></div>
+        <div><dt>Galería</dt><dd>San Telmo · con cita previa</dd></div>
+        <div><dt>Servicios</dt><dd>Asesoramiento y envíos</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLECCIÓN ===== -->
+<section id="coleccion">
+  <div class="wrap">
+    <div class="cab">
+      <div>
+        <span class="rotulo">Alfombras disponibles</span>
+        <h2>Colección</h2>
+        <p>Hacé click en una pieza para ver la ficha técnica con las fotos en situación, completa y de la trama.</p>
+      </div>
+      <div class="filtros" id="filtros" aria-label="Filtrar por tipo de tejido"></div>
+    </div>
+    <div class="total" id="total"></div>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<!-- ===== FICHA TÉCNICA ===== -->
+<dialog id="ficha" aria-labelledby="f-nombre">
+  <div class="ficha">
+    <div class="visor">
+      <div class="foto principal" id="principal" title="Ampliar"></div>
+      <div class="minis" id="minis"></div>
+    </div>
+    <div class="ficha-datos">
+      <div class="ficha-top">
+        <span class="rotulo" id="f-origen"></span>
+        <button class="cerrar" id="cerrar">Cerrar ✕</button>
+      </div>
+      <h2 id="f-nombre"></h2>
+      <span class="ref" id="f-ref"></span>
+      <dl class="tecnica">
+        <div class="fila">
+          <div class="dato"><dt>Ancho</dt><dd id="f-ancho"></dd></div>
+          <div class="dato"><dt>Largo</dt><dd id="f-largo"></dd></div>
+        </div>
+        <div class="fila full"><div class="dato"><dt>Tipo de nudo</dt><dd id="f-nudo"></dd>
+          <div class="comparar"><span class="lbl">Comparar con</span><div id="f-comparar" style="display:flex;gap:.9rem"></div></div>
+        </div></div>
+        <div class="fila full"><div class="dato"><dt>Material</dt><dd id="f-material"></dd></div></div>
+        <div class="fila full"><div class="dato"><dt>Uso ideal</dt><dd id="f-uso"></dd></div></div>
+      </dl>
+      <div class="ficha-acc">
+        <a href="#contacto" class="btn" id="f-cta">Coordinar una visita</a>
+        <div class="pager"><button id="ant">← Anterior</button><button id="sig">Siguiente →</button></div>
+      </div>
+    </div>
+  </div>
+</dialog>
+<div class="zoom" id="zoom" role="dialog" aria-label="Imagen ampliada"></div>
+
+<!-- ===== PRÓXIMOS INGRESOS ===== -->
+<section id="ingresos">
+  <div class="wrap">
+    <div class="cab">
+      <div>
+        <span class="rotulo">Incoming</span>
+        <h2>Próximos ingresos</h2>
+        <p>Piezas en producción o en camino. Se pueden reservar para verlas cuando lleguen a la galería.</p>
+      </div>
+      <a href="#contacto" class="btn linea">Consultar</a>
+    </div>
+    <div class="ingresos" id="ingresos-grid"></div>
+  </div>
+</section>
+
+<!-- ===== QUIÉNES SOMOS ===== -->
+<section id="nosotros">
+  <div class="wrap nos">
+    <div class="foto" id="retrato" data-img="img/renato.jpg"></div>
+    <div>
+      <span class="rotulo">Quiénes somos</span>
+      <h2>Renato De Benedictis</h2>
+      <p>Especialista en textiles desde hace más de 50 años. Selecciona cada pieza de Trama Textiles y trabaja de forma directa con los talleres que las producen.</p>
+      <ul class="lista">
+        <li><b>Especialidades</b><span>Textiles de Medio Oriente y Asia · Textiles europeos · Pintura italiana</span></li>
+        <li><b>Producción</b><span>Artesanal. Cada alfombra se teje o se anuda a mano en telar.</span></li>
+        <li><b>Materiales</b><span>Fibras naturales: lana, yute, algodón y seda. Tintes vegetales o fibra sin teñir.</span></li>
+        <li><b>Talleres</b><span>Artesanos regionales de India, como los de Varanasi, con condiciones de trabajo éticas y pago justo.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section id="contacto">
+  <div class="wrap contacto">
+    <div>
+      <span class="rotulo">Contacto</span>
+      <h2>Galería privada en San Telmo</h2>
+      <p>Atendemos solo con cita previa. La dirección exacta se envía al confirmar la visita.</p>
+      <ul class="lista">
+        <li><b>Ubicación</b><span>San Telmo, Buenos Aires</span></li>
+        <li><b>Horarios</b><span>Martes a sábado · 11 a 19 h</span></li>
+        <li><b>Envíos</b><span>Coordinamos el envío de la pieza una vez concretada la compra</span></li>
+        <li><b>Email</b><span><a href="mailto:galeria@tramatextiles.com">galeria@tramatextiles.com</a></span></li>
+        <li><b>WhatsApp</b><span><a href="https://wa.me/5491100000000" target="_blank" rel="noopener">+54 9 11 0000-0000</a></span></li>
+        <li><b>Instagram</b><span><a href="https://www.instagram.com/trama.alfombras/" target="_blank" rel="noopener">@trama.alfombras</a></span></li>
+      </ul>
+    </div>
+    <form id="form" aria-label="Solicitar cita">
+      <div class="dos">
+        <div class="campo"><label for="nombre">Nombre</label><input id="nombre" required></div>
+        <div class="campo"><label for="estudio">Estudio / Empresa</label><input id="estudio"></div>
+      </div>
+      <div class="dos">
+        <div class="campo"><label for="email">Email</label><input id="email" type="email" required></div>
+        <div class="campo"><label for="tel">Teléfono</label><input id="tel" type="tel"></div>
+      </div>
+      <div class="dos">
+        <div class="campo"><label for="pieza">Pieza de interés</label><select id="pieza"><option>Ver la colección completa</option></select></div>
+        <div class="campo"><label for="fecha">Fecha preferida</label><input id="fecha" type="date"></div>
+      </div>
+      <div class="campo"><label for="msg">Comentarios (ambiente, medidas)</label><textarea id="msg" rows="3"></textarea></div>
+      <div><button class="btn" type="submit">Solicitar cita</button></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#inicio" class="logo" aria-label="Volver al inicio"><svg role="img" aria-label="Trama"><use href="#logo-trama"/></svg></a>
+    <span>Trama Textiles · San Telmo, Buenos Aires</span>
+    <a href="https://www.instagram.com/trama.alfombras/" target="_blank" rel="noopener">Instagram @trama.alfombras</a>
+    <span>Visitas con cita previa</span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   TIPOS DE NUDO / TEJIDO
+   Foto real de referencia (cuadrada, 600×600): img/nudo-<clave>.jpg
+   ========================================================= */
+const NUDOS = {
+  boucle:   {nombre:'Bouclé (lazo)',           muestra:['#E4DDD0','#CFC5B4','#BBAE99']},
+  plano:    {nombre:'Tejido plano (panamá)',   muestra:['#C9BBA6','#B3A38B','#E0D6C6']},
+  espiga:   {nombre:'Espiga',                  muestra:['#B9A88E','#9E8C72','#D6CAB6']},
+  anudado:  {nombre:'Anudado a mano · nudo persa', muestra:['#7A5A4C','#A88A6E','#D9CBB6']},
+  tibetano: {nombre:'Nudo tibetano',           muestra:['#A9A79A','#8C8A7E','#D0CEC2']},
+  kilim:    {nombre:'Kilim',                   muestra:['#B5876A','#8F6A55','#D8C3A8']}
+};
+
+/* =========================================================
+   PIEZAS — para agregar una alfombra, copiar un bloque.
+   Fotos reales en img/: <id>-situacion.jpg · <id>-completa.jpg · <id>-trama.jpg
+   - portada: qué foto se muestra en el mosaico (situacion | completa | trama)
+   - formato: proporción de esa foto en el mosaico
+   - comparar: dos claves de NUDOS para las fotos de comparación
+   - col / diseno / ambiente: solo para las ilustraciones provisorias
+   ========================================================= */
+const PIEZAS = [
+ {id:'abby',     nombre:'Abby',     ref:'TT-001', origen:'Jaipur, India',     ancho:200, largo:300, nudo:'boucle',  comparar:['plano','anudado'],  material:'Lana, yute y algodón',     uso:'Living · tránsito medio',          portada:'situacion', formato:'3/4', ambiente:'Living',     diseno:'melange',   col:['#E6E0D3','#CFC6B6','#BDB3A2']},
+ {id:'cuadrille',nombre:'Cuadrillé',ref:'TT-002', origen:'Varanasi, India',   ancho:170, largo:240, nudo:'plano',   comparar:['espiga','boucle'],  material:'Lana',                     uso:'Galerías y espacios semicubiertos', portada:'situacion', formato:'4/5', ambiente:'Living',     diseno:'cuadrille', col:['#8E9A90','#C9C2B4','#B47C74']},
+ {id:'arena',    nombre:'Arena',    ref:'TT-003', origen:'Varanasi, India',   ancho:250, largo:350, nudo:'plano',   comparar:['boucle','kilim'],   material:'Yute y lana',              uso:'Comedor · alto tránsito',          portada:'trama',     formato:'4/5', ambiente:'Comedor',    diseno:'liso',      col:['#C8B9A2','#B3A288','#D9CDB9']},
+ {id:'carbon',   nombre:'Carbón',   ref:'TT-004', origen:'Bhadohi, India',    ancho:160, largo:230, nudo:'espiga',  comparar:['plano','tibetano'], material:'Lana sin teñir',           uso:'Dormitorio · bajo tránsito',       portada:'situacion', formato:'1/1', ambiente:'Dormitorio', diseno:'espiga',    col:['#5A4F47','#3F3732','#7A6E64']},
+ {id:'benares',  nombre:'Benarés',  ref:'TT-005', origen:'Varanasi, India',   ancho:250, largo:300, nudo:'anudado', comparar:['tibetano','kilim'], material:'Lana y seda',              uso:'Living · bajo tránsito',           portada:'completa',  formato:'3/4', ambiente:'Living',     diseno:'medallon',  col:['#3F4E6A','#C5AE84','#8E4E3E']},
+ {id:'sal',      nombre:'Sal',      ref:'TT-006', origen:'Jaipur, India',     ancho:200, largo:290, nudo:'tibetano',comparar:['anudado','boucle'], material:'Lana de Himalaya',         uso:'Living · tránsito medio',          portada:'situacion', formato:'4/3', ambiente:'Living',     diseno:'liso',      col:['#ECE8E0','#D9D3C8','#C9C1B3']},
+ {id:'anatolia', nombre:'Anatolia', ref:'TT-007', origen:'Anatolia, Turquía', ancho:180, largo:270, nudo:'kilim',   comparar:['plano','anudado'],  material:'Lana · tintes vegetales',  uso:'Comedor · pasillos',               portada:'completa',  formato:'2/3', ambiente:'Comedor',    diseno:'kilim',     col:['#C9A57A','#9E5A3E','#3E3A36']},
+ {id:'yute',     nombre:'Yute',     ref:'TT-008', origen:'Mirzapur, India',   ancho:300, largo:400, nudo:'espiga',  comparar:['boucle','plano'],   material:'Yute natural',             uso:'Living amplio · alto tránsito',    portada:'trama',     formato:'1/1', ambiente:'Living',     diseno:'espiga',    col:['#C4AD88','#A89070','#D8C7A8']},
+ {id:'humo',     nombre:'Humo',     ref:'TT-009', origen:'Varanasi, India',   ancho:140, largo:200, nudo:'boucle',  comparar:['espiga','tibetano'],material:'Lana y viscosa de bambú',  uso:'Dormitorio · pie de cama',         portada:'situacion', formato:'3/4', ambiente:'Dormitorio', diseno:'melange',   col:['#A9A69E','#8F8C84','#C4C1B8']},
+ {id:'ronda',    nombre:'Ronda',    ref:'TT-010', origen:'Jaipur, India',     ancho:200, largo:300, nudo:'plano',   comparar:['kilim','espiga'],   material:'Algodón orgánico',         uso:'Dormitorio · niños',               portada:'situacion', formato:'4/5', ambiente:'Dormitorio', diseno:'rayas',     col:['#E9E3D7','#9AA38F','#C9B59A']},
+ {id:'tabriz',   nombre:'Tabriz',   ref:'TT-011', origen:'Tabriz, Irán',      ancho:300, largo:400, nudo:'anudado', comparar:['tibetano','boucle'],material:'Lana kurk y seda',         uso:'Living · bajo tránsito',           portada:'situacion', formato:'4/3', ambiente:'Living',     diseno:'medallon',  col:['#E6DCC8','#8A5B4B','#5D6B78']},
+ {id:'musgo',    nombre:'Musgo',    ref:'TT-012', origen:'Bhadohi, India',    ancho:170, largo:240, nudo:'tibetano',comparar:['anudado','plano'],  material:'Lana y seda',              uso:'Estudio · bajo tránsito',          portada:'trama',     formato:'3/4', ambiente:'Living',     diseno:'melange',   col:['#7F8A76','#6A7563','#9AA48F']},
+ {id:'adobe',    nombre:'Adobe',    ref:'TT-013', origen:'Anatolia, Turquía', ancho:150, largo:220, nudo:'kilim',   comparar:['plano','boucle'],   material:'Lana · tintes vegetales',  uso:'Recibidor · pasillo',              portada:'situacion', formato:'1/1', ambiente:'Comedor',    diseno:'geometrico',col:['#B98C70','#8E6450','#D6BFA6']},
+ {id:'lino',     nombre:'Lino',     ref:'TT-014', origen:'Varanasi, India',   ancho:250, largo:350, nudo:'plano',   comparar:['espiga','anudado'], material:'Lana y lino',              uso:'Comedor · tránsito medio',         portada:'completa',  formato:'4/5', ambiente:'Comedor',    diseno:'liso',      col:['#DCD6C9','#B8AF9F','#EAE5DB']},
+ {id:'ceniza',   nombre:'Ceniza',   ref:'TT-015', origen:'Mirzapur, India',   ancho:200, largo:300, nudo:'espiga',  comparar:['boucle','tibetano'],material:'Lana y yute',              uso:'Living · alto tránsito',           portada:'situacion', formato:'3/4', ambiente:'Living',     diseno:'espiga',    col:['#BDB8AE','#9E998F','#D3CFC6']},
+ {id:'oasis',    nombre:'Oasis',    ref:'TT-016', origen:'Jaipur, India',     ancho:180, largo:270, nudo:'boucle',  comparar:['plano','kilim'],    material:'Lana y algodón',           uso:'Dormitorio · tránsito medio',      portada:'situacion', formato:'4/5', ambiente:'Dormitorio', diseno:'geometrico',col:['#E3DCCD','#B79C7E','#CDBFA9']}
+];
+
+const INGRESOS = [
+ {id:'ing-1', titulo:'Serie Varanasi',     llegada:'Noviembre 2026', detalle:'6 piezas · lana y seda · anudado', progreso:.85, col:['#3F4E6A','#C5AE84','#8E4E3E'], diseno:'medallon'},
+ {id:'ing-2', titulo:'Kilims de Anatolia', llegada:'Diciembre 2026', detalle:'4 piezas · tintes vegetales',       progreso:.6,  col:['#C9A57A','#9E5A3E','#3E3A36'], diseno:'kilim'},
+ {id:'ing-3', titulo:'Yute natural',       llegada:'Diciembre 2026', detalle:'200×300 y 250×350 cm',             progreso:.45, col:['#C4AD88','#A89070','#D8C7A8'], diseno:'espiga'},
+ {id:'ing-4', titulo:'Encargo a medida',   llegada:'En telar',       detalle:'Consultar plazos',                 progreso:.3,  col:['#7F8A76','#E3DCCD','#6B4B42'], diseno:'rayas'}
+];
+
+/*GEN-START*/
+/* =========================================================
+   ILUSTRACIONES PROVISORIAS (SVG)
+   Simulan las fotos hasta tener las reales. Si existe la foto
+   en img/, se muestra encima y la ilustración queda oculta.
+   ========================================================= */
+let _uid = 0; const uid = p => p + (++_uid);
+const rnd = seed => { let s = (seed * 9301 + 49297) % 233280 || 1; return () => (s = (s * 16807) % 2147483647) / 2147483647; };
+const f = n => Math.round(n * 100) / 100;
+
+function noise(W, H, op = .22, freq = .9) {
+  const id = uid('n');
+  return `<filter id="${id}" filterUnits="userSpaceOnUse" x="0" y="0" width="${f(W)}" height="${f(H)}">
+    <feTurbulence type="fractalNoise" baseFrequency="${freq}" numOctaves="2" seed="${_uid}"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0"/></filter>
+    <rect width="${f(W)}" height="${f(H)}" filter="url(#${id})" opacity="${op}"/>`;
+}
+
+/* Alfombra vista desde arriba, con el largo en vertical (W < H) */
+function rugV(p, W, H, flecos = true) {
+  const [a, b, c] = p.col, R = rnd(p.seed), u = Math.min(W, H);
+  let s = `<rect width="${f(W)}" height="${f(H)}" fill="${a}"/>`;
+  switch (p.diseno) {
+    case 'cuadrille': {
+      const st = u / 13;
+      for (let y = 0; y < H; y += st) s += `<rect y="${f(y)}" width="${f(W)}" height="${f(st * .42)}" fill="${b}" opacity=".5"/>`;
+      for (let x = 0; x < W; x += st) s += `<rect x="${f(x)}" width="${f(st * .42)}" height="${f(H)}" fill="${b}" opacity=".45"/>`;
+      for (let y = st * 2.2; y < H; y += st * 4) s += `<rect y="${f(y)}" width="${f(W)}" height="${f(st * .16)}" fill="${c}"/>`;
+      for (let x = st * 2.2; x < W; x += st * 4) s += `<rect x="${f(x)}" width="${f(st * .16)}" height="${f(H)}" fill="${c}"/>`;
+      break; }
+    case 'liso': {
+      const m = u * .07;
+      s += `<rect x="${f(m)}" y="${f(m)}" width="${f(W - 2 * m)}" height="${f(H - 2 * m)}" fill="none" stroke="${b}" stroke-width="${f(u * .03)}"/>`;
+      break; }
+    case 'rayas': {
+      let y = u * .06, i = 0;
+      while (y < H - u * .06) {
+        const h = u * (.015 + R() * .07);
+        if (i % 2) s += `<rect y="${f(y)}" width="${f(W)}" height="${f(h)}" fill="${i % 4 === 1 ? b : c}"/>`;
+        y += h; i++;
+      }
+      break; }
+    case 'medallon': {
+      const k = u * .09;
+      s += `<rect x="${f(k / 2)}" y="${f(k / 2)}" width="${f(W - k)}" height="${f(H - k)}" fill="none" stroke="${b}" stroke-width="${f(k)}"/>`;
+      s += `<rect x="${f(k * 1.25)}" y="${f(k * 1.25)}" width="${f(W - k * 2.5)}" height="${f(H - k * 2.5)}" fill="none" stroke="${c}" stroke-width="${f(k * .18)}"/>`;
+      for (let x = k * .5; x < W; x += k) s += `<circle cx="${f(x)}" cy="${f(k / 2)}" r="${f(k * .2)}" fill="${c}"/><circle cx="${f(x)}" cy="${f(H - k / 2)}" r="${f(k * .2)}" fill="${c}"/>`;
+      const cx = W / 2, cy = H / 2;
+      [[.34, b], [.26, c], [.17, a], [.09, b]].forEach(([r, col]) => {
+        s += `<polygon points="${f(cx)},${f(cy - H * r * 1.15)} ${f(cx + W * r)},${f(cy)} ${f(cx)},${f(cy + H * r * 1.15)} ${f(cx - W * r)},${f(cy)}" fill="${col}"/>`;
+      });
+      const q = k * 1.3, t = u * .2;
+      [[q, q, 1, 1], [W - q, q, -1, 1], [q, H - q, 1, -1], [W - q, H - q, -1, -1]].forEach(([x, y, sx, sy]) => {
+        s += `<polygon points="${f(x)},${f(y)} ${f(x + t * sx)},${f(y)} ${f(x)},${f(y + t * sy)}" fill="${c}" opacity=".8"/>`;
+      });
+      break; }
+    case 'kilim': {
+      const n = 9, bh = H / n;
+      for (let i = 0; i < n; i++) {
+        const y = i * bh;
+        if (i % 2 === 0) continue;
+        s += `<rect y="${f(y)}" width="${f(W)}" height="${f(bh)}" fill="${b}"/>`;
+        const d = bh * .8, cyy = y + bh / 2;
+        for (let x = d / 2; x < W; x += d) {
+          s += `<polygon points="${f(x)},${f(cyy - d / 2)} ${f(x + d / 2)},${f(cyy)} ${f(x)},${f(cyy + d / 2)} ${f(x - d / 2)},${f(cyy)}" fill="${c}"/>`;
+          s += `<rect x="${f(x - d * .1)}" y="${f(cyy - d * .1)}" width="${f(d * .2)}" height="${f(d * .2)}" fill="${a}"/>`;
+        }
+      }
+      break; }
+    case 'espiga': {
+      const st = u * .055, sw = u * .014;
+      for (let y = 0; y < H + st; y += st) {
+        let pts = '';
+        for (let x = 0, j = 0; x <= W + st; x += st / 1.2, j++) pts += `${f(x)},${f(y + (j % 2 ? -st * .45 : 0))} `;
+        s += `<polyline points="${pts}" fill="none" stroke="${b}" stroke-width="${f(sw)}" opacity=".7"/>`;
+      }
+      break; }
+    case 'geometrico': {
+      const st = u * .28, sw = u * .018;
+      for (let x = -H; x < W + H; x += st) {
+        s += `<line x1="${f(x)}" y1="0" x2="${f(x + H)}" y2="${f(H)}" stroke="${b}" stroke-width="${f(sw)}"/>`;
+        s += `<line x1="${f(x)}" y1="0" x2="${f(x - H)}" y2="${f(H)}" stroke="${b}" stroke-width="${f(sw)}"/>`;
+      }
+      break; }
+    case 'melange':
+    default: {
+      for (let i = 0; i < 220; i++) {
+        const x = R() * W, y = R() * H, w = u * (.006 + R() * .02);
+        s += `<rect x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(w * .6)}" fill="${R() > .5 ? b : c}" opacity=".45"/>`;
+      }
+    }
+  }
+  if (flecos) {
+    const fl = u * .05, col = p.fleco || '#EEE8DC';
+    for (let x = W * .01; x < W; x += W / 46) {
+      s += `<line x1="${f(x)}" y1="${f(-fl)}" x2="${f(x)}" y2="0" stroke="${col}" stroke-width="${f(u * .006)}"/>`;
+      s += `<line x1="${f(x)}" y1="${f(H)}" x2="${f(x)}" y2="${f(H + fl)}" stroke="${col}" stroke-width="${f(u * .006)}"/>`;
+    }
+  }
+  return s;
+}
+/* Cualquier orientación */
+function rugShapes(p, W, H, flecos = true) {
+  return W > H ? `<g transform="translate(${f(W)},0) rotate(90)">${rugV(p, H, W, flecos)}</g>` : rugV(p, W, H, flecos);
+}
+const svgWrap = (W, H, body, fit = 'slice') =>
+  `<svg class="ilu" viewBox="0 0 ${f(W)} ${f(H)}" preserveAspectRatio="xMidYMid ${fit}" aria-hidden="true">${body}</svg>`;
+
+function vineta(W, H) {
+  const g = uid('v'), l = uid('l');
+  return `<defs><radialGradient id="${g}" cx="50%" cy="45%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".16"/></radialGradient>
+    <linearGradient id="${l}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity=".08"/></linearGradient></defs>
+    <rect width="${f(W)}" height="${f(H)}" fill="url(#${l})"/><rect width="${f(W)}" height="${f(H)}" fill="url(#${g})"/>`;
+}
+
+/* ---------- Foto en situación ---------- */
+function planta(x, y, u) {
+  let s = `<ellipse cx="${f(x)}" cy="${f(y + u * .005)}" rx="${f(u * .08)}" ry="${f(u * .014)}" fill="#000" opacity=".1"/>`;
+  s += `<path d="M${f(x - u * .055)} ${f(y - u * .16)} Q${f(x - u * .085)} ${f(y - u * .06)} ${f(x - u * .04)} ${f(y)} L${f(x + u * .04)} ${f(y)} Q${f(x + u * .085)} ${f(y - u * .06)} ${f(x + u * .055)} ${f(y - u * .16)} Z" fill="#B27C5C"/>`;
+  s += `<rect x="${f(x - u * .058)}" y="${f(y - u * .168)}" width="${f(u * .116)}" height="${f(u * .014)}" fill="#A06E50"/>`;
+  const R = rnd(Math.round(x));
+  for (let i = 0; i < 7; i++) {
+    const ang = -Math.PI / 2 + (R() - .5) * 1.6, L = u * (.14 + R() * .16);
+    const x2 = x + Math.cos(ang) * L, y2 = y - u * .16 + Math.sin(ang) * L;
+    s += `<line x1="${f(x)}" y1="${f(y - u * .16)}" x2="${f(x2)}" y2="${f(y2)}" stroke="#6F604E" stroke-width="${f(u * .004)}"/>`;
+    for (let k = 0; k < 4; k++) {
+      const t = .4 + k * .2, lx = x + (x2 - x) * t, ly = y - u * .16 + (y2 - (y - u * .16)) * t;
+      s += `<ellipse cx="${f(lx + (k % 2 ? u * .015 : -u * .015))}" cy="${f(ly)}" rx="${f(u * .018)}" ry="${f(u * .008)}" fill="#8E9B83" transform="rotate(${k % 2 ? 25 : -25} ${f(lx)} ${f(ly)})"/>`;
+    }
+  }
+  return s;
+}
+
+function roomSVG(p, ratio = 4 / 3) {
+  const W = ratio >= 1 ? 800 : 800 * ratio, H = ratio >= 1 ? 800 / ratio : 800, u = Math.min(W, H), cx = W / 2;
+  const hz = H * .56;
+  let s = `<rect width="${f(W)}" height="${f(hz)}" fill="#E8E5DE"/>`;
+  // ventana
+  const ww = u * .3, wx = Math.min(W - ww - u * .05, cx + u * .22), wy = H * .07;
+  s += `<rect x="${f(wx)}" y="${f(wy)}" width="${f(ww)}" height="${f(hz - wy - u * .015)}" fill="#F8F6F1"/>`;
+  s += `<path d="M${f(wx + ww / 2)} ${f(wy)} V${f(hz - u * .015)} M${f(wx)} ${f(wy + (hz - wy) * .38)} H${f(wx + ww)}" stroke="#D9D4CB" stroke-width="${f(u * .006)}"/>`;
+  s += `<rect x="${f(wx)}" y="${f(wy)}" width="${f(ww)}" height="${f(hz - wy - u * .015)}" fill="none" stroke="#D9D4CB" stroke-width="${f(u * .008)}"/>`;
+  // piso
+  s += `<rect y="${f(hz)}" width="${f(W)}" height="${f(H - hz)}" fill="#D5C9B6"/>`;
+  for (let i = 1; i < 12; i++) { const y = hz + (H - hz) * Math.pow(i / 12, 1.5); s += `<line x1="0" y1="${f(y)}" x2="${f(W)}" y2="${f(y)}" stroke="#C9BCA7" stroke-width="1"/>`; }
+  s += `<rect y="${f(hz - u * .012)}" width="${f(W)}" height="${f(u * .012)}" fill="#DEDAD2"/>`;
+  s += `<polygon points="${f(wx)},${f(hz)} ${f(wx + ww)},${f(hz)} ${f(wx + ww * 1.6)},${f(H)} ${f(wx - ww * .2)},${f(H)}" fill="#fff" opacity=".16"/>`;
+  // alfombra (vista cenital achatada para simular el piso)
+  const rw = Math.min(W * .9, u * 1.5), A = rw * p.ancho / p.largo, rd = (H - hz) * .66;
+  const rx = (W - rw) / 2, ry = hz + (H - hz) * .2;
+  s += `<rect x="${f(rx + u * .01)}" y="${f(ry + u * .012)}" width="${f(rw)}" height="${f(rd)}" fill="#000" opacity=".08"/>`;
+  s += `<g transform="translate(${f(rx)},${f(ry)}) scale(1,${f(rd / A)})">${rugShapes(p, rw, A)}${noise(rw, A, .2)}</g>`;
+  // mobiliario
+  const amb = p.ambiente;
+  if (amb === 'Comedor') {
+    const tw = u * .62, tb = ry + rd * .62, th = u * .2, tt = tb - th;
+    s += `<line x1="${f(cx)}" y1="0" x2="${f(cx)}" y2="${f(hz * .33)}" stroke="#6F655B" stroke-width="1.2"/>`;
+    s += `<path d="M${f(cx - u * .07)} ${f(hz * .33 + u * .06)} Q${f(cx)} ${f(hz * .33 - u * .02)} ${f(cx + u * .07)} ${f(hz * .33 + u * .06)} Z" fill="#CFC5B6"/>`;
+    // sillas de fondo
+    [-.2, .2].forEach(o => { const x = cx + u * o; s += `<rect x="${f(x - u * .055)}" y="${f(tt - u * .13)}" width="${f(u * .11)}" height="${f(u * .14)}" rx="${f(u * .01)}" fill="#8E7258"/>`; });
+    s += `<ellipse cx="${f(cx)}" cy="${f(tb + u * .005)}" rx="${f(tw * .55)}" ry="${f(u * .03)}" fill="#000" opacity=".1"/>`;
+    s += `<rect x="${f(cx - tw / 2)}" y="${f(tt)}" width="${f(tw)}" height="${f(u * .028)}" fill="#9C7A5C"/>`;
+    [-.42, .4].forEach(o => s += `<rect x="${f(cx + tw * o)}" y="${f(tt + u * .028)}" width="${f(u * .022)}" height="${f(th - u * .028)}" fill="#86684E"/>`);
+    s += `<ellipse cx="${f(cx + u * .05)}" cy="${f(tt - u * .004)}" rx="${f(u * .05)}" ry="${f(u * .008)}" fill="#E9E4DA"/>`;
+    s += `<path d="M${f(cx - u * .12)} ${f(tt)} q${f(u * .015)} ${f(-u * .08)} ${f(u * .03)} 0 Z" fill="#B88A6A"/>`;
+    // sillas delanteras
+    [-.24, .24].forEach(o => { const x = cx + u * o, b = ry + rd * .97;
+      s += `<rect x="${f(x - u * .07)}" y="${f(b - u * .3)}" width="${f(u * .14)}" height="${f(u * .2)}" rx="${f(u * .015)}" fill="#7E644D"/>`;
+      s += `<rect x="${f(x - u * .062)}" y="${f(b - u * .1)}" width="${f(u * .012)}" height="${f(u * .1)}" fill="#6E5642"/><rect x="${f(x + u * .05)}" y="${f(b - u * .1)}" width="${f(u * .012)}" height="${f(u * .1)}" fill="#6E5642"/>`; });
+  } else if (amb === 'Dormitorio') {
+    const bw = u * .7, bt = hz - u * .2, bb = ry + rd * .5;
+    s += `<rect x="${f(cx - bw / 2 - u * .01)}" y="${f(bt)}" width="${f(bw + u * .02)}" height="${f(u * .24)}" rx="${f(u * .015)}" fill="#C7B9A4"/>`;
+    s += `<ellipse cx="${f(cx)}" cy="${f(bb)}" rx="${f(bw * .55)}" ry="${f(u * .03)}" fill="#000" opacity=".1"/>`;
+    s += `<rect x="${f(cx - bw / 2)}" y="${f(hz - u * .05)}" width="${f(bw)}" height="${f(bb - hz + u * .05)}" rx="${f(u * .02)}" fill="#EFEBE4"/>`;
+    s += `<rect x="${f(cx - bw / 2)}" y="${f(hz + (bb - hz) * .35)}" width="${f(bw)}" height="${f((bb - hz) * .65)}" rx="${f(u * .02)}" fill="#D8D2C6"/>`;
+    s += `<rect x="${f(cx - bw / 2)}" y="${f(hz + (bb - hz) * .35)}" width="${f(bw)}" height="${f(u * .02)}" fill="#C9C1B3"/>`;
+    [-.17, .17].forEach(o => s += `<rect x="${f(cx + u * o - u * .12)}" y="${f(hz - u * .1)}" width="${f(u * .24)}" height="${f(u * .08)}" rx="${f(u * .03)}" fill="#F6F3EE"/>`);
+    [-1, 1].forEach(sg => { const x = cx + sg * (bw / 2 + u * .09);
+      s += `<rect x="${f(x - u * .055)}" y="${f(hz - u * .02)}" width="${f(u * .11)}" height="${f(u * .1)}" fill="#A2826A"/>`;
+      s += `<rect x="${f(x - u * .004)}" y="${f(hz - u * .1)}" width="${f(u * .008)}" height="${f(u * .08)}" fill="#6E655B"/>`;
+      s += `<path d="M${f(x - u * .035)} ${f(hz - u * .1)} L${f(x - u * .022)} ${f(hz - u * .15)} L${f(x + u * .022)} ${f(hz - u * .15)} L${f(x + u * .035)} ${f(hz - u * .1)} Z" fill="#EDE6D9"/>`; });
+  } else { // Living
+    const sw = u * .64, sx = cx - sw / 2 - u * .06, sb = ry + rd * .14;
+    s += `<ellipse cx="${f(sx + sw / 2)}" cy="${f(sb)}" rx="${f(sw * .58)}" ry="${f(u * .025)}" fill="#000" opacity=".1"/>`;
+    s += `<rect x="${f(sx)}" y="${f(sb - u * .26)}" width="${f(sw)}" height="${f(u * .15)}" rx="${f(u * .035)}" fill="#D8D1C5"/>`;
+    s += `<rect x="${f(sx - u * .02)}" y="${f(sb - u * .13)}" width="${f(sw + u * .04)}" height="${f(u * .11)}" rx="${f(u * .03)}" fill="#E4DED3"/>`;
+    [-1, 1].forEach(sg => s += `<rect x="${f(sg < 0 ? sx - u * .06 : sx + sw - u * .0)}" y="${f(sb - u * .19)}" width="${f(u * .07)}" height="${f(u * .17)}" rx="${f(u * .03)}" fill="#D2CABD"/>`);
+    s += `<rect x="${f(sx + sw * .1)}" y="${f(sb - u * .23)}" width="${f(u * .14)}" height="${f(u * .1)}" rx="${f(u * .03)}" fill="#C9B9A1"/>`;
+    s += `<rect x="${f(sx + sw * .62)}" y="${f(sb - u * .22)}" width="${f(u * .13)}" height="${f(u * .09)}" rx="${f(u * .03)}" fill="#ECE8E0"/>`;
+    // mesa ratona
+    const tw = u * .34, tb = ry + rd * .62, tt = tb - u * .07;
+    s += `<ellipse cx="${f(cx)}" cy="${f(tb)}" rx="${f(tw * .6)}" ry="${f(u * .022)}" fill="#000" opacity=".12"/>`;
+    s += `<rect x="${f(cx - tw / 2)}" y="${f(tt)}" width="${f(tw)}" height="${f(u * .028)}" rx="${f(u * .006)}" fill="#A3815F"/>`;
+    s += `<rect x="${f(cx - tw * .36)}" y="${f(tt + u * .028)}" width="${f(u * .05)}" height="${f(u * .042)}" fill="#8E6F52"/><rect x="${f(cx + tw * .36 - u * .05)}" y="${f(tt + u * .028)}" width="${f(u * .05)}" height="${f(u * .042)}" fill="#8E6F52"/>`;
+    s += `<path d="M${f(cx - u * .06)} ${f(tt)} q${f(-u * .02)} ${f(-u * .07)} ${f(u * .012)} ${f(-u * .08)} q${f(u * .032)} ${f(u * .01)} ${f(u * .012)} ${f(u * .08)} Z" fill="#E6DFD3"/>`;
+    s += `<rect x="${f(cx + u * .03)}" y="${f(tt - u * .02)}" width="${f(u * .08)}" height="${f(u * .02)}" fill="#7F8A76"/>`;
+    s += planta(Math.min(W - u * .12, sx + sw + u * .2), hz + u * .03, u);
+  }
+  s += vineta(W, H);
+  return svgWrap(W, H, s);
+}
+
+/* ---------- Vista completa (cenital) ---------- */
+function topSVG(p, ratio = 4 / 3) {
+  const W = 800, H = 800 / ratio;
+  const rh = H * .82, rwid = Math.min(rh * p.ancho / p.largo, W * .8), rh2 = rwid * p.largo / p.ancho;
+  const x = (W - rwid) / 2, y = (H - rh2) / 2, b = uid('b');
+  let s = `<rect width="${W}" height="${f(H)}" fill="#E9E6DF"/>${noise(W, H, .08, .6)}`;
+  s += `<defs><filter id="${b}"><feGaussianBlur stdDeviation="8"/></filter></defs>`;
+  s += `<rect x="${f(x + 6)}" y="${f(y + 10)}" width="${f(rwid)}" height="${f(rh2)}" fill="#000" opacity=".18" filter="url(#${b})"/>`;
+  s += `<g transform="translate(${f(x)},${f(y)})">${rugShapes(p, rwid, rh2)}${noise(rwid, rh2, .22)}</g>`;
+  s += vineta(W, H);
+  return svgWrap(W, H, s, 'meet');
+}
+
+/* ---------- Close-up de trama ---------- */
+const TEXTURA = {
+  boucle:   (id, c) => `<pattern id="${id}" width="10" height="18" patternUnits="userSpaceOnUse"><circle cx="5" cy="4.5" r="4" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="1.6"/><circle cx="4" cy="3.5" r="1.4" fill="#fff" opacity=".22"/><circle cx="0" cy="13.5" r="4" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="1.6"/><circle cx="10" cy="13.5" r="4" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="1.6"/><circle cx="9" cy="12.5" r="1.4" fill="#fff" opacity=".22"/></pattern>`,
+  plano:    (id, c) => `<pattern id="${id}" width="14" height="14" patternUnits="userSpaceOnUse"><g stroke="#000" stroke-opacity=".3" stroke-width=".7" fill="#fff" fill-opacity=".07"><rect x="0" y="0" width="7" height="3.5" rx="1.5"/><rect x="0" y="3.5" width="7" height="3.5" rx="1.5"/><rect x="7" y="0" width="3.5" height="7" rx="1.5"/><rect x="10.5" y="0" width="3.5" height="7" rx="1.5"/><rect x="0" y="7" width="3.5" height="7" rx="1.5"/><rect x="3.5" y="7" width="3.5" height="7" rx="1.5"/><rect x="7" y="7" width="7" height="3.5" rx="1.5"/><rect x="7" y="10.5" width="7" height="3.5" rx="1.5"/></g></pattern>`,
+  espiga:   (id, c) => `<pattern id="${id}" width="12" height="6" patternUnits="userSpaceOnUse"><path d="M0 6 L6 0.5 L12 6" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1.8"/><path d="M0 4.5 L6 -1 L12 4.5" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="1"/></pattern>`,
+  anudado:  (id, c) => `<pattern id="${id}" width="5" height="5" patternUnits="userSpaceOnUse"><rect x=".5" y=".5" width="4" height="4" rx="1.6" fill="#fff" fill-opacity=".06" stroke="#000" stroke-opacity=".22" stroke-width=".6"/></pattern>`,
+  tibetano: (id, c) => `<pattern id="${id}" width="7" height="10" patternUnits="userSpaceOnUse"><ellipse cx="3.5" cy="5" rx="3" ry="4.3" fill="#fff" fill-opacity=".07" stroke="#000" stroke-opacity=".24" stroke-width=".8"/></pattern>`,
+  kilim:    (id, c) => `<pattern id="${id}" width="6" height="4" patternUnits="userSpaceOnUse"><path d="M0 2 Q1.5 0 3 2 T6 2" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="1.2"/><line x1="0" y1="0" x2="0" y2="4" stroke="#fff" stroke-opacity=".12" stroke-width=".6"/></pattern>`
+};
+function closeSVG(p, nudo = p.nudo) {
+  const W = 400, H = 400, id = uid('t');
+  let s = `<defs>${TEXTURA[nudo](id)}</defs>`;
+  s += `<g transform="scale(6.2) translate(-4,-6)">${rugV(p, 200, 300, false)}</g>`;
+  s += `<rect width="${W}" height="${H}" fill="url(#${id})" transform="scale(2)"/>`;
+  s += noise(W, H, .28, 1.1) + vineta(W, H);
+  return svgWrap(W, H, s);
+}
+
+/* ---------- Telar (próximos ingresos) ---------- */
+function telarSVG(p, prog = .5) {
+  const W = 400, H = 400, x0 = 80, x1 = 320, top = 60, bot = 320;
+  let s = `<rect width="${W}" height="${H}" fill="#E6E3DC"/><rect y="340" width="${W}" height="60" fill="#D5C9B6"/>`;
+  const wt = bot - (bot - top) * prog;
+  s += `<g transform="translate(${x0},${f(wt)})">${rugShapes(p, x1 - x0, bot - wt, false)}${noise(x1 - x0, bot - wt, .25)}</g>`;
+  for (let x = x0 + 2; x < x1; x += 4) s += `<line x1="${x}" y1="${top}" x2="${x}" y2="${f(wt)}" stroke="#F3EFE7" stroke-width=".9"/>`;
+  s += `<rect x="${x0 - 4}" y="${f(wt - 5)}" width="${x1 - x0 + 8}" height="6" fill="#B49576"/>`;
+  s += `<rect x="58" y="30" width="16" height="320" fill="#9A7A5C"/><rect x="326" y="30" width="16" height="320" fill="#9A7A5C"/>`;
+  s += `<rect x="50" y="${top - 18}" width="300" height="16" fill="#8A6C50"/><rect x="50" y="${bot + 2}" width="300" height="16" fill="#8A6C50"/>`;
+  p.col.forEach((c, i) => s += `<circle cx="${110 + i * 46}" cy="352" r="16" fill="${c}"/><path d="M${98 + i * 46} 346 q12 -8 24 2 M${96 + i * 46} 354 q14 -8 28 2" stroke="#000" stroke-opacity=".15" fill="none"/>`);
+  s += vineta(W, H);
+  return svgWrap(W, H, s);
+}
+
+/* ---------- Retrato (provisorio) ---------- */
+function retratoSVG(p1, p2) {
+  const W = 400, H = 500;
+  let s = `<rect width="${W}" height="${H}" fill="#DEDBD3"/><rect y="410" width="${W}" height="90" fill="#CFC3AF"/>`;
+  s += `<g transform="translate(215,60)">${rugShapes(p1, 150, 230)}${noise(150, 230, .2)}</g>`;
+  [[p2.col[0], 0], [p1.col[1], 1], [p2.col[1], 2], [p1.col[0], 3]].forEach(([c, i]) => s += `<rect x="${40 - i * 2}" y="${396 - i * 20}" width="${150 + i * 4}" height="20" rx="4" fill="${c}"/>`);
+  s += `<path d="M120 500 Q118 330 175 312 Q232 330 230 500 Z" fill="#8F8A80"/>`;
+  s += `<rect x="163" y="282" width="24" height="34" fill="#A39E94"/><ellipse cx="175" cy="255" rx="32" ry="38" fill="#A39E94"/>`;
+  s += vineta(W, H);
+  return svgWrap(W, H, s);
+}
+/*GEN-END*/
+
+
+/* =========================================================
+   ARMADO DE FOTOS
+   ========================================================= */
+const $ = id => document.getElementById(id);
+const ratioNum = r => { const [a, b] = String(r).split('/').map(Number); return a / (b || 1); };
+const realImg = (src, alt) => `<img src="${src}" alt="${alt}" loading="lazy" onerror="this.remove()">`;
+function ilustracion(p, vista, ratio, nudo) {
+  if (vista === 'situacion') return roomSVG(p, ratio);
+  if (vista === 'completa')  return topSVG(p, ratio);
+  return closeSVG(p, nudo || p.nudo);
+}
+const VISTAS = {situacion:'En situación', completa:'Vista completa', trama:'Trama · close-up'};
+const srcDe = (p, v) => `img/${p.id}-${v}.jpg`;
+/* Muestra neutra para las fotos de comparación de nudos */
+const muestra = k => ({seed:7, col:NUDOS[k].muestra, diseno:'melange', ancho:200, largo:300, nudo:k});
+
+/* ===== Portada y retrato ===== */
+$('portada').innerHTML = roomSVG(PIEZAS[0], 21/9) + realImg('img/portada.jpg', 'Alfombra en un living');
+$('retrato').innerHTML = retratoSVG(PIEZAS[4], PIEZAS[6]) + realImg('img/renato.jpg', 'Renato De Benedictis');
+
+/* ===== Mosaico ===== */
+PIEZAS.forEach((p, i) => p.seed = i + 3);
+$('masonry').innerHTML = PIEZAS.map((p, i) => `
+  <button class="pieza" data-i="${i}" data-nudo="${p.nudo}" aria-label="Ver ficha de ${p.nombre}">
+    <div class="foto" style="aspect-ratio:${p.formato}">
+      ${ilustracion(p, p.portada, ratioNum(p.formato))}${realImg(srcDe(p, p.portada), `Alfombra ${p.nombre}`)}
+    </div>
+    <div class="cartela"><strong>${p.nombre}</strong><span>${p.ancho} × ${p.largo} cm</span></div>
+    <div class="cartela-sub">${NUDOS[p.nudo].nombre} · ${p.material}</div>
+  </button>`).join('');
+
+const usados = [...new Set(PIEZAS.map(p => p.nudo))];
+const corto = k => NUDOS[k].nombre.split(' (')[0].split(' ·')[0];
+$('filtros').innerHTML = `<button aria-pressed="true" data-f="todos">Todas</button>` +
+  usados.map(k => `<button aria-pressed="false" data-f="${k}">${corto(k)}</button>`).join('');
+function contar(){ const n = document.querySelectorAll('.pieza:not(.oculta)').length; $('total').textContent = `${n} ${n === 1 ? 'pieza disponible' : 'piezas disponibles'}`; }
+$('filtros').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  $('filtros').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.querySelectorAll('.pieza').forEach(c => c.classList.toggle('oculta', b.dataset.f !== 'todos' && c.dataset.nudo !== b.dataset.f));
+  contar();
+});
+contar();
+$('pieza').insertAdjacentHTML('beforeend', PIEZAS.map(p => `<option>${p.nombre} · ${p.ref}</option>`).join(''));
+
+/* ===== Ficha técnica ===== */
+const dlg = $('ficha'); let actual = 0, enGrande = null;
+function verGrande(contenido, etq){
+  enGrande = {contenido, etq};
+  $('principal').innerHTML = contenido + `<span class="etq">${etq}</span>`;
+}
+function vista(p, v){ return {v, etq:VISTAS[v], html:ilustracion(p, v, 4/3) + realImg(srcDe(p, v), `${p.nombre} · ${VISTAS[v]}`)}; }
+function abrir(i){
+  actual = (i + PIEZAS.length) % PIEZAS.length;
+  const p = PIEZAS[actual];
+  const pintarMinis = sel => {
+    $('minis').innerHTML = ['situacion','completa','trama'].filter(v => v !== sel).map(v => {
+      const x = vista(p, v);
+      return `<button class="foto mini" data-v="${v}" aria-label="Ver ${x.etq}">${x.html}<span class="etq">${x.etq}</span></button>`;
+    }).join('');
+  };
+  const elegir = v => { const x = vista(p, v); verGrande(x.html, x.etq); pintarMinis(v); };
+  elegir('situacion');
+  $('minis').onclick = e => { const b = e.target.closest('.mini'); if (b) elegir(b.dataset.v); };
+
+  $('f-origen').textContent = p.origen;
+  $('f-nombre').textContent = p.nombre;
+  $('f-ref').textContent = `Ref. ${p.ref}`;
+  $('f-ancho').textContent = `${p.ancho} cm`;
+  $('f-largo').textContent = `${p.largo} cm`;
+  $('f-nudo').textContent = NUDOS[p.nudo].nombre;
+  $('f-material').textContent = p.material;
+  $('f-uso').textContent = p.uso;
+  $('f-comparar').innerHTML = p.comparar.map(k => `
+    <button class="nudo" data-k="${k}" title="Ver ${NUDOS[k].nombre}">
+      <div class="foto">${closeSVG(muestra(k), k)}${realImg(`img/nudo-${k}.jpg`, NUDOS[k].nombre)}</div>
+      <small>${NUDOS[k].nombre}</small></button>`).join('');
+  $('f-comparar').onclick = e => { const b = e.target.closest('.nudo'); if (!b) return; const k = b.dataset.k;
+    verGrande(closeSVG(muestra(k), k) + realImg(`img/nudo-${k}.jpg`, NUDOS[k].nombre), `Comparación · ${NUDOS[k].nombre}`); pintarMinis(null); };
+  $('f-cta').onclick = () => { $('pieza').value = `${p.nombre} · ${p.ref}`; dlg.close(); };
+  if (!dlg.open) dlg.showModal();
+}
+$('masonry').addEventListener('click', e => { const c = e.target.closest('.pieza'); if (c) abrir(+c.dataset.i); });
+$('cerrar').onclick = () => dlg.close();
+$('ant').onclick = () => abrir(actual - 1);
+$('sig').onclick = () => abrir(actual + 1);
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+dlg.addEventListener('keydown', e => { if (e.key === 'ArrowRight') abrir(actual + 1); if (e.key === 'ArrowLeft') abrir(actual - 1); });
+
+/* Zoom */
+const zoom = $('zoom');
+$('principal').addEventListener('click', () => { if (!enGrande) return;
+  zoom.innerHTML = `<div class="foto">${enGrande.contenido}</div>`; zoom.classList.add('on'); });
+zoom.onclick = () => zoom.classList.remove('on');
+document.addEventListener('keydown', e => { if (e.key === 'Escape') zoom.classList.remove('on'); });
+
+/* ===== Próximos ingresos ===== */
+$('ingresos-grid').innerHTML = INGRESOS.map((x, i) => `
+  <article class="ingreso">
+    <div class="foto">${telarSVG({...x, seed:40 + i, ancho:200, largo:300}, x.progreso)}${realImg(`img/${x.id}.jpg`, x.titulo)}</div>
+    <dl><dt>${x.llegada}</dt><dd><strong>${x.titulo}</strong><br>${x.detalle}</dd></dl>
+  </article>`).join('');
+
+/* ===== Menú móvil ===== */
+const mb = document.querySelector('.menu-btn'), menu = $('menu');
+mb.onclick = () => { const a = menu.classList.toggle('abierto'); mb.setAttribute('aria-expanded', a); };
+menu.querySelectorAll('a').forEach(a => a.onclick = () => menu.classList.remove('abierto'));
+
+/* ===== Formulario → email ===== */
+$('form').onsubmit = e => {
+  e.preventDefault(); const v = id => $(id).value;
+  const body = `Nombre: ${v('nombre')}\nEstudio: ${v('estudio')}\nEmail: ${v('email')}\nTeléfono: ${v('tel')}\nPieza: ${v('pieza')}\nFecha preferida: ${v('fecha')}\n\n${v('msg')}`;
+  location.href = `mailto:galeria@tramatextiles.com?subject=${encodeURIComponent('Solicitud de visita · Trama Textiles')}&body=${encodeURIComponent(body)}`;
+};
+</script>
+</body>
+</html>
