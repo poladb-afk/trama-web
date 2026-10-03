@@ -30,6 +30,7 @@ a{color:inherit}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
 section{padding:clamp(4rem,8vw,6.5rem) 0;border-top:1px solid var(--lin)}
 .rotulo{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--salvia);font-weight:400}
+.bandera{width:17px;height:12px;border-radius:1px;vertical-align:-1px;margin-left:.15rem;box-shadow:0 0 0 1px rgba(25,26,23,.12)}
 h1,h2{font-weight:300;line-height:1.15;letter-spacing:.005em}
 h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin:.4rem 0 1rem}
 p{max-width:64ch;color:var(--txt2)}
@@ -176,6 +177,12 @@ footer a{text-decoration:none}
     <path transform="translate(-1.5 0)" fill="none" stroke="#fff" stroke-width="1.7"
       d="M25 54H34M29.5 54V66 M41 66V54H46a3.2 3.2 0 0 1 0 6.4H41M45.5 60.4L49.5 66 M56 66L60.5 54L65 66 M72 66V54L77 62L82 54V66 M89 66L93.5 54L98 66"/>
   </symbol>
+  <symbol id="flag-ar" viewBox="0 0 30 20">
+    <rect width="30" height="20" fill="#fff"/>
+    <rect width="30" height="6.7" fill="#75AADB"/>
+    <rect y="13.3" width="30" height="6.7" fill="#75AADB"/>
+    <circle cx="15" cy="10" r="2.6" fill="#F6B40E"/>
+  </symbol>
 </svg>
 
 <header>
@@ -200,7 +207,7 @@ footer a{text-decoration:none}
     <div class="foto" id="portada" data-img="img/portada.jpg"></div>
     <div class="inicio-txt">
       <div>
-        <span class="rotulo">Trama Textiles · Buenos Aires</span>
+        <span class="rotulo">Trama Textiles · Buenos Aires, Argentina <svg class="bandera" aria-hidden="true"><use href="#flag-ar"/></svg></span>
         <h1 data-i18n="h1">Alfombras de diseño hechas a mano, en fibras naturales.</h1>
         <p data-i18n="inicio_p">Alfombras artesanales producidas en talleres de India y Medio Oriente. La venta es presencial, en nuestra galería privada de San Telmo, con cita previa. Ofrecemos asesoramiento personalizado y hacemos envíos.</p>
       </div>
@@ -305,7 +312,7 @@ footer a{text-decoration:none}
       <h2 data-i18n="h2_contacto">Galería privada en San Telmo</h2>
       <p data-i18n="con_p">Atendemos solo con cita previa. La dirección exacta se envía al confirmar la visita.</p>
       <ul class="lista">
-        <li><b data-i18n="con_li1_b">Ubicación</b><span data-i18n="con_li1_s">San Telmo, Buenos Aires</span></li>
+        <li><b data-i18n="con_li1_b">Ubicación</b><span><span data-i18n="con_li1_s">San Telmo, Buenos Aires, Argentina</span> <svg class="bandera" aria-hidden="true"><use href="#flag-ar"/></svg></span></li>
         <li><b data-i18n="con_li2_b">Horarios</b><span data-i18n="con_li2_s">Martes a sábado · 11 a 19 h</span></li>
         <li><b data-i18n="con_li3_b">Envíos</b><span data-i18n="con_li3_s">Coordinamos el envío de la pieza una vez concretada la compra</span></li>
         <li><b>Email</b><span><a href="mailto:galeria@tramatextiles.com">galeria@tramatextiles.com</a></span></li>
@@ -335,7 +342,7 @@ footer a{text-decoration:none}
 <footer>
   <div class="wrap">
     <a href="#inicio" class="logo" aria-label="Volver al inicio"><svg role="img" aria-label="Trama"><use href="#logo-trama"/></svg></a>
-    <span>Trama Textiles · San Telmo, Buenos Aires</span>
+    <span>Trama Textiles · San Telmo, Buenos Aires, Argentina <svg class="bandera" aria-hidden="true"><use href="#flag-ar"/></svg></span>
     <a href="https://www.instagram.com/trama.alfombras/" target="_blank" rel="noopener">Instagram @trama.alfombras</a>
     <span data-i18n="foot_visitas">Visitas con cita previa</span>
   </div>
@@ -670,7 +677,7 @@ const muestra = k => ({seed:7, col:NUDOS[k].muestra, diseno:'melange', ancho:200
 /* ===== Idiomas (ES/EN) ===== */
 const I18N = {
 es: {
-  titulo: 'Trama Textiles · Alfombras hechas a mano · San Telmo, Buenos Aires',
+  titulo: 'Trama Textiles · Alfombras hechas a mano · San Telmo, Buenos Aires, Argentina',
   menu_btn: 'Menú', nav_coleccion: 'Colección', nav_ingresos: 'Próximos ingresos',
   nav_nosotros: 'Quiénes somos', nav_contacto: 'Contacto',
   h1: 'Alfombras de diseño hechas a mano, en fibras naturales.',
@@ -697,7 +704,7 @@ es: {
   nos_li4_b: 'Talleres', nos_li4_s: 'Artesanos regionales de India, como los de Varanasi, con condiciones de trabajo éticas y pago justo.',
   con_rotulo: 'Contacto', h2_contacto: 'Galería privada en San Telmo',
   con_p: 'Atendemos solo con cita previa. La dirección exacta se envía al confirmar la visita.',
-  con_li1_b: 'Ubicación', con_li1_s: 'San Telmo, Buenos Aires',
+  con_li1_b: 'Ubicación', con_li1_s: 'San Telmo, Buenos Aires, Argentina',
   con_li2_b: 'Horarios', con_li2_s: 'Martes a sábado · 11 a 19 h',
   con_li3_b: 'Envíos', con_li3_s: 'Coordinamos el envío de la pieza una vez concretada la compra',
   form_aria: 'Solicitar cita', lb_nombre: 'Nombre', lb_estudio: 'Estudio / Empresa',
@@ -718,7 +725,7 @@ es: {
   alt_portada: 'Alfombra en un living'
 },
 en: {
-  titulo: 'Trama Textiles · Handmade rugs · San Telmo, Buenos Aires',
+  titulo: 'Trama Textiles · Handmade rugs · San Telmo, Buenos Aires, Argentina',
   menu_btn: 'Menu', nav_coleccion: 'Collection', nav_ingresos: 'Incoming pieces',
   nav_nosotros: 'About us', nav_contacto: 'Contact',
   h1: 'Design rugs handcrafted in natural fibres.',
@@ -745,7 +752,7 @@ en: {
   nos_li4_b: 'Workshops', nos_li4_s: 'Regional artisans in India, such as those of Varanasi, with ethical working conditions and fair pay.',
   con_rotulo: 'Contact', h2_contacto: 'Private gallery in San Telmo',
   con_p: 'By appointment only. The exact address is shared once your visit is confirmed.',
-  con_li1_b: 'Location', con_li1_s: 'San Telmo, Buenos Aires',
+  con_li1_b: 'Location', con_li1_s: 'San Telmo, Buenos Aires, Argentina',
   con_li2_b: 'Hours', con_li2_s: 'Tuesday to Saturday · 11 am to 7 pm',
   con_li3_b: 'Shipping', con_li3_s: 'We arrange shipping of the piece once the purchase is completed',
   form_aria: 'Request an appointment', lb_nombre: 'Name', lb_estudio: 'Studio / Company',
