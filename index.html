@@ -56,6 +56,11 @@ header{position:sticky;top:0;z-index:40;background:rgba(241,239,234,.96);backdro
 .nav ul a{text-decoration:none;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase}
 .nav ul a:hover{color:var(--salvia)}
 .menu-btn{display:none;background:none;border:0;color:var(--txt);font:inherit;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.lang{display:flex;align-items:center;gap:.05rem;font-size:.72rem;letter-spacing:.12em;margin-left:auto}
+.nav ul + .lang{margin-left:0}
+.lang button{background:none;border:0;color:var(--txt2);font:inherit;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:.2rem .2rem}
+.lang button[aria-pressed="true"]{color:var(--txt);text-decoration:underline;text-underline-offset:4px}
+.lang i{color:var(--txt2);font-style:normal}
 
 /* ===== Inicio ===== */
 .inicio{border-top:0;padding-top:clamp(1.5rem,3vw,2.5rem)}
@@ -174,13 +179,16 @@ footer a{text-decoration:none}
 <header>
   <div class="wrap nav">
     <a href="#inicio" class="logo" aria-label="Trama Textiles · inicio"><svg role="img" aria-label="Trama"><use href="#logo-trama"/></svg></a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menú</button>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu" data-i18n="menu_btn">Menú</button>
     <ul id="menu">
-      <li><a href="#coleccion">Colección</a></li>
-      <li><a href="#ingresos">Próximos ingresos</a></li>
-      <li><a href="#nosotros">Quiénes somos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#coleccion" data-i18n="nav_coleccion">Colección</a></li>
+      <li><a href="#ingresos" data-i18n="nav_ingresos">Próximos ingresos</a></li>
+      <li><a href="#nosotros" data-i18n="nav_nosotros">Quiénes somos</a></li>
+      <li><a href="#contacto" data-i18n="nav_contacto">Contacto</a></li>
     </ul>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button id="lang-es" aria-pressed="true" lang="es">ES</button><i aria-hidden="true">·</i><button id="lang-en" aria-pressed="false" lang="en">EN</button>
+    </div>
   </div>
 </header>
 
@@ -191,14 +199,14 @@ footer a{text-decoration:none}
     <div class="inicio-txt">
       <div>
         <span class="rotulo">Trama Textiles · Buenos Aires</span>
-        <h1>Alfombras de diseño hechas a mano, en fibras naturales.</h1>
-        <p>Alfombras artesanales producidas en talleres de India y Medio Oriente. La venta es presencial, en nuestra galería privada de San Telmo, con cita previa. Ofrecemos asesoramiento personalizado y hacemos envíos.</p>
+        <h1 data-i18n="h1">Alfombras de diseño hechas a mano, en fibras naturales.</h1>
+        <p data-i18n="inicio_p">Alfombras artesanales producidas en talleres de India y Medio Oriente. La venta es presencial, en nuestra galería privada de San Telmo, con cita previa. Ofrecemos asesoramiento personalizado y hacemos envíos.</p>
       </div>
       <dl class="datos-rapidos">
-        <div><dt>Materiales</dt><dd>Lana, yute, algodón y seda</dd></div>
-        <div><dt>Producción</dt><dd>Artesanal, tejida o anudada a mano</dd></div>
-        <div><dt>Galería</dt><dd>San Telmo · con cita previa</dd></div>
-        <div><dt>Servicios</dt><dd>Asesoramiento y envíos</dd></div>
+        <div><dt data-i18n="dr_mat_dt">Materiales</dt><dd data-i18n="dr_mat_dd">Lana, yute, algodón y seda</dd></div>
+        <div><dt data-i18n="dr_prod_dt">Producción</dt><dd data-i18n="dr_prod_dd">Artesanal, tejida o anudada a mano</dd></div>
+        <div><dt data-i18n="dr_gal_dt">Galería</dt><dd data-i18n="dr_gal_dd">San Telmo · con cita previa</dd></div>
+        <div><dt data-i18n="dr_serv_dt">Servicios</dt><dd data-i18n="dr_serv_dd">Asesoramiento y envíos</dd></div>
       </dl>
     </div>
   </div>
@@ -209,11 +217,11 @@ footer a{text-decoration:none}
   <div class="wrap">
     <div class="cab">
       <div>
-        <span class="rotulo">Alfombras disponibles</span>
-        <h2>Colección</h2>
-        <p>Hacé click en una pieza para ver la ficha técnica con las fotos en situación, completa y de la trama.</p>
+        <span class="rotulo" data-i18n="cab_rotulo">Alfombras disponibles</span>
+        <h2 data-i18n="h2_coleccion">Colección</h2>
+        <p data-i18n="cab_p">Hacé click en una pieza para ver la ficha técnica con las fotos en situación, completa y de la trama.</p>
       </div>
-      <div class="filtros" id="filtros" aria-label="Filtrar por tipo de tejido"></div>
+      <div class="filtros" id="filtros" aria-label="Filtrar por tipo de tejido" data-i18n-aria="filtros_aria"></div>
     </div>
     <div class="total" id="total"></div>
     <div class="masonry" id="masonry"></div>
@@ -224,35 +232,35 @@ footer a{text-decoration:none}
 <dialog id="ficha" aria-labelledby="f-nombre">
   <div class="ficha">
     <div class="visor">
-      <div class="foto principal" id="principal" title="Ampliar"></div>
+      <div class="foto principal" id="principal" title="Ampliar" data-i18n-title="btn_ampliar"></div>
       <div class="minis" id="minis"></div>
     </div>
     <div class="ficha-datos">
       <div class="ficha-top">
         <span class="rotulo" id="f-origen"></span>
-        <button class="cerrar" id="cerrar">Cerrar ✕</button>
+        <button class="cerrar" id="cerrar" data-i18n="btn_cerrar">Cerrar ✕</button>
       </div>
       <h2 id="f-nombre"></h2>
       <span class="ref" id="f-ref"></span>
       <dl class="tecnica">
         <div class="fila">
-          <div class="dato"><dt>Ancho</dt><dd id="f-ancho"></dd></div>
-          <div class="dato"><dt>Largo</dt><dd id="f-largo"></dd></div>
+          <div class="dato"><dt data-i18n="dt_ancho">Ancho</dt><dd id="f-ancho"></dd></div>
+          <div class="dato"><dt data-i18n="dt_largo">Largo</dt><dd id="f-largo"></dd></div>
         </div>
-        <div class="fila full"><div class="dato"><dt>Tipo de nudo</dt><dd id="f-nudo"></dd>
-          <div class="comparar"><span class="lbl">Comparar con</span><div id="f-comparar" style="display:flex;gap:.9rem"></div></div>
+        <div class="fila full"><div class="dato"><dt data-i18n="dt_nudo">Tipo de nudo</dt><dd id="f-nudo"></dd>
+          <div class="comparar"><span class="lbl" data-i18n="lbl_comparar">Comparar con</span><div id="f-comparar" style="display:flex;gap:.9rem"></div></div>
         </div></div>
-        <div class="fila full"><div class="dato"><dt>Material</dt><dd id="f-material"></dd></div></div>
-        <div class="fila full"><div class="dato"><dt>Uso ideal</dt><dd id="f-uso"></dd></div></div>
+        <div class="fila full"><div class="dato"><dt data-i18n="dt_material">Material</dt><dd id="f-material"></dd></div></div>
+        <div class="fila full"><div class="dato"><dt data-i18n="dt_uso">Uso ideal</dt><dd id="f-uso"></dd></div></div>
       </dl>
       <div class="ficha-acc">
-        <a href="#contacto" class="btn" id="f-cta">Coordinar una visita</a>
-        <div class="pager"><button id="ant">← Anterior</button><button id="sig">Siguiente →</button></div>
+        <a href="#contacto" class="btn" id="f-cta" data-i18n="f_cta">Coordinar una visita</a>
+        <div class="pager"><button id="ant" data-i18n="btn_ant">← Anterior</button><button id="sig" data-i18n="btn_sig">Siguiente →</button></div>
       </div>
     </div>
   </div>
 </dialog>
-<div class="zoom" id="zoom" role="dialog" aria-label="Imagen ampliada"></div>
+<div class="zoom" id="zoom" role="dialog" aria-label="Imagen ampliada" data-i18n-aria="zoom_aria"></div>
 
 <!-- ===== PRÓXIMOS INGRESOS ===== -->
 <section id="ingresos">
@@ -260,10 +268,10 @@ footer a{text-decoration:none}
     <div class="cab">
       <div>
         <span class="rotulo">Incoming</span>
-        <h2>Próximos ingresos</h2>
-        <p>Piezas en producción o en camino. Se pueden reservar para verlas cuando lleguen a la galería.</p>
+        <h2 data-i18n="h2_ingresos">Próximos ingresos</h2>
+        <p data-i18n="ing_p">Piezas en producción o en camino. Se pueden reservar para verlas cuando lleguen a la galería.</p>
       </div>
-      <a href="#contacto" class="btn linea">Consultar</a>
+      <a href="#contacto" class="btn linea" data-i18n="btn_consultar">Consultar</a>
     </div>
     <div class="ingresos" id="ingresos-grid"></div>
   </div>
@@ -274,14 +282,14 @@ footer a{text-decoration:none}
   <div class="wrap nos">
     <div class="foto" id="retrato" data-img="img/renato.jpg"></div>
     <div>
-      <span class="rotulo">Quiénes somos</span>
+      <span class="rotulo" data-i18n="nos_rotulo">Quiénes somos</span>
       <h2>Renato De Benedictis</h2>
-      <p>Especialista en textiles desde hace más de 50 años. Selecciona cada pieza de Trama Textiles y trabaja de forma directa con los talleres que las producen.</p>
+      <p data-i18n="nos_p">Especialista en textiles desde hace más de 50 años. Selecciona cada pieza de Trama Textiles y trabaja de forma directa con los talleres que las producen.</p>
       <ul class="lista">
-        <li><b>Especialidades</b><span>Textiles de Medio Oriente y Asia · Textiles europeos · Pintura italiana</span></li>
-        <li><b>Producción</b><span>Artesanal. Cada alfombra se teje o se anuda a mano en telar.</span></li>
-        <li><b>Materiales</b><span>Fibras naturales: lana, yute, algodón y seda. Tintes vegetales o fibra sin teñir.</span></li>
-        <li><b>Talleres</b><span>Artesanos regionales de India, como los de Varanasi, con condiciones de trabajo éticas y pago justo.</span></li>
+        <li><b data-i18n="nos_li1_b">Especialidades</b><span data-i18n="nos_li1_s">Textiles de Medio Oriente y Asia · Textiles europeos · Pintura italiana</span></li>
+        <li><b data-i18n="nos_li2_b">Producción</b><span data-i18n="nos_li2_s">Artesanal. Cada alfombra se teje o se anuda a mano en telar.</span></li>
+        <li><b data-i18n="nos_li3_b">Materiales</b><span data-i18n="nos_li3_s">Fibras naturales: lana, yute, algodón y seda. Tintes vegetales o fibra sin teñir.</span></li>
+        <li><b data-i18n="nos_li4_b">Talleres</b><span data-i18n="nos_li4_s">Artesanos regionales de India, como los de Varanasi, con condiciones de trabajo éticas y pago justo.</span></li>
       </ul>
     </div>
   </div>
@@ -291,33 +299,33 @@ footer a{text-decoration:none}
 <section id="contacto">
   <div class="wrap contacto">
     <div>
-      <span class="rotulo">Contacto</span>
-      <h2>Galería privada en San Telmo</h2>
-      <p>Atendemos solo con cita previa. La dirección exacta se envía al confirmar la visita.</p>
+      <span class="rotulo" data-i18n="con_rotulo">Contacto</span>
+      <h2 data-i18n="h2_contacto">Galería privada en San Telmo</h2>
+      <p data-i18n="con_p">Atendemos solo con cita previa. La dirección exacta se envía al confirmar la visita.</p>
       <ul class="lista">
-        <li><b>Ubicación</b><span>San Telmo, Buenos Aires</span></li>
-        <li><b>Horarios</b><span>Martes a sábado · 11 a 19 h</span></li>
-        <li><b>Envíos</b><span>Coordinamos el envío de la pieza una vez concretada la compra</span></li>
+        <li><b data-i18n="con_li1_b">Ubicación</b><span data-i18n="con_li1_s">San Telmo, Buenos Aires</span></li>
+        <li><b data-i18n="con_li2_b">Horarios</b><span data-i18n="con_li2_s">Martes a sábado · 11 a 19 h</span></li>
+        <li><b data-i18n="con_li3_b">Envíos</b><span data-i18n="con_li3_s">Coordinamos el envío de la pieza una vez concretada la compra</span></li>
         <li><b>Email</b><span><a href="mailto:galeria@tramatextiles.com">galeria@tramatextiles.com</a></span></li>
         <li><b>WhatsApp</b><span><a href="https://wa.me/5491100000000" target="_blank" rel="noopener">+54 9 11 0000-0000</a></span></li>
         <li><b>Instagram</b><span><a href="https://www.instagram.com/trama.alfombras/" target="_blank" rel="noopener">@trama.alfombras</a></span></li>
       </ul>
     </div>
-    <form id="form" aria-label="Solicitar cita">
+    <form id="form" aria-label="Solicitar cita" data-i18n-aria="form_aria">
       <div class="dos">
-        <div class="campo"><label for="nombre">Nombre</label><input id="nombre" required></div>
-        <div class="campo"><label for="estudio">Estudio / Empresa</label><input id="estudio"></div>
+        <div class="campo"><label for="nombre" data-i18n="lb_nombre">Nombre</label><input id="nombre" required></div>
+        <div class="campo"><label for="estudio" data-i18n="lb_estudio">Estudio / Empresa</label><input id="estudio"></div>
       </div>
       <div class="dos">
         <div class="campo"><label for="email">Email</label><input id="email" type="email" required></div>
-        <div class="campo"><label for="tel">Teléfono</label><input id="tel" type="tel"></div>
+        <div class="campo"><label for="tel" data-i18n="lb_tel">Teléfono</label><input id="tel" type="tel"></div>
       </div>
       <div class="dos">
-        <div class="campo"><label for="pieza">Pieza de interés</label><select id="pieza"><option>Ver la colección completa</option></select></div>
-        <div class="campo"><label for="fecha">Fecha preferida</label><input id="fecha" type="date"></div>
+        <div class="campo"><label for="pieza" data-i18n="lb_pieza">Pieza de interés</label><select id="pieza"><option data-i18n="opt_default">Ver la colección completa</option></select></div>
+        <div class="campo"><label for="fecha" data-i18n="lb_fecha">Fecha preferida</label><input id="fecha" type="date"></div>
       </div>
-      <div class="campo"><label for="msg">Comentarios (ambiente, medidas)</label><textarea id="msg" rows="3"></textarea></div>
-      <div><button class="btn" type="submit">Solicitar cita</button></div>
+      <div class="campo"><label for="msg" data-i18n="lb_msg">Comentarios (ambiente, medidas)</label><textarea id="msg" rows="3"></textarea></div>
+      <div><button class="btn" type="submit" data-i18n="btn_submit">Solicitar cita</button></div>
     </form>
   </div>
 </section>
@@ -327,7 +335,7 @@ footer a{text-decoration:none}
     <a href="#inicio" class="logo" aria-label="Volver al inicio"><svg role="img" aria-label="Trama"><use href="#logo-trama"/></svg></a>
     <span>Trama Textiles · San Telmo, Buenos Aires</span>
     <a href="https://www.instagram.com/trama.alfombras/" target="_blank" rel="noopener">Instagram @trama.alfombras</a>
-    <span>Visitas con cita previa</span>
+    <span data-i18n="foot_visitas">Visitas con cita previa</span>
   </div>
 </footer>
 
@@ -652,39 +660,171 @@ function ilustracion(p, vista, ratio, nudo) {
   if (vista === 'completa')  return topSVG(p, ratio);
   return closeSVG(p, nudo || p.nudo);
 }
-const VISTAS = {situacion:'En situación', completa:'Vista completa', trama:'Trama · close-up'};
+const VISTAS = {situacion:0, completa:0, trama:0}; // claves de vista; etiquetas por idioma en I18N
 const srcDe = (p, v) => `img/${p.id}-${v}.jpg`;
 /* Muestra neutra para las fotos de comparación de nudos */
 const muestra = k => ({seed:7, col:NUDOS[k].muestra, diseno:'melange', ancho:200, largo:300, nudo:k});
 
+/* ===== Idiomas (ES/EN) ===== */
+const I18N = {
+es: {
+  titulo: 'Trama Textiles · Alfombras hechas a mano · San Telmo, Buenos Aires',
+  menu_btn: 'Menú', nav_coleccion: 'Colección', nav_ingresos: 'Próximos ingresos',
+  nav_nosotros: 'Quiénes somos', nav_contacto: 'Contacto',
+  h1: 'Alfombras de diseño hechas a mano, en fibras naturales.',
+  inicio_p: 'Alfombras artesanales producidas en talleres de India y Medio Oriente. La venta es presencial, en nuestra galería privada de San Telmo, con cita previa. Ofrecemos asesoramiento personalizado y hacemos envíos.',
+  dr_mat_dt: 'Materiales', dr_mat_dd: 'Lana, yute, algodón y seda',
+  dr_prod_dt: 'Producción', dr_prod_dd: 'Artesanal, tejida o anudada a mano',
+  dr_gal_dt: 'Galería', dr_gal_dd: 'San Telmo · con cita previa',
+  dr_serv_dt: 'Servicios', dr_serv_dd: 'Asesoramiento y envíos',
+  cab_rotulo: 'Alfombras disponibles', h2_coleccion: 'Colección',
+  cab_p: 'Hacé click en una pieza para ver la ficha técnica con las fotos en situación, completa y de la trama.',
+  filtros_aria: 'Filtrar por tipo de tejido', todas: 'Todas',
+  pieza_disp: 'pieza disponible', piezas_disp: 'piezas disponibles',
+  dt_ancho: 'Ancho', dt_largo: 'Largo', dt_nudo: 'Tipo de nudo', dt_material: 'Material', dt_uso: 'Uso ideal',
+  lbl_comparar: 'Comparar con', comparacion: 'Comparación',
+  btn_cerrar: 'Cerrar ✕', btn_ampliar: 'Ampliar', btn_ant: '← Anterior', btn_sig: 'Siguiente →',
+  f_cta: 'Coordinar una visita', ver: 'Ver', ver_ficha: 'Ver ficha de', zoom_aria: 'Imagen ampliada',
+  h2_ingresos: 'Próximos ingresos', ing_p: 'Piezas en producción o en camino. Se pueden reservar para verlas cuando lleguen a la galería.',
+  btn_consultar: 'Consultar',
+  nos_rotulo: 'Quiénes somos',
+  nos_p: 'Especialista en textiles desde hace más de 50 años. Selecciona cada pieza de Trama Textiles y trabaja de forma directa con los talleres que las producen.',
+  nos_li1_b: 'Especialidades', nos_li1_s: 'Textiles de Medio Oriente y Asia · Textiles europeos · Pintura italiana',
+  nos_li2_b: 'Producción', nos_li2_s: 'Artesanal. Cada alfombra se teje o se anuda a mano en telar.',
+  nos_li3_b: 'Materiales', nos_li3_s: 'Fibras naturales: lana, yute, algodón y seda. Tintes vegetales o fibra sin teñir.',
+  nos_li4_b: 'Talleres', nos_li4_s: 'Artesanos regionales de India, como los de Varanasi, con condiciones de trabajo éticas y pago justo.',
+  con_rotulo: 'Contacto', h2_contacto: 'Galería privada en San Telmo',
+  con_p: 'Atendemos solo con cita previa. La dirección exacta se envía al confirmar la visita.',
+  con_li1_b: 'Ubicación', con_li1_s: 'San Telmo, Buenos Aires',
+  con_li2_b: 'Horarios', con_li2_s: 'Martes a sábado · 11 a 19 h',
+  con_li3_b: 'Envíos', con_li3_s: 'Coordinamos el envío de la pieza una vez concretada la compra',
+  form_aria: 'Solicitar cita', lb_nombre: 'Nombre', lb_estudio: 'Estudio / Empresa',
+  lb_tel: 'Teléfono', lb_pieza: 'Pieza de interés', lb_fecha: 'Fecha preferida',
+  lb_msg: 'Comentarios (ambiente, medidas)', btn_submit: 'Solicitar cita',
+  opt_default: 'Ver la colección completa', foot_visitas: 'Visitas con cita previa',
+  mail_asunto: 'Solicitud de visita · Trama Textiles',
+  mail_nombre: 'Nombre', mail_estudio: 'Estudio', mail_email: 'Email', mail_tel: 'Teléfono',
+  mail_pieza: 'Pieza', mail_fecha: 'Fecha preferida',
+  vistas: {situacion: 'En situación', completa: 'Vista completa', trama: 'Trama · close-up'},
+  nudos: {boucle: 'Bouclé (lazo)', plano: 'Tejido plano (panamá)', espiga: 'Espiga',
+          anudado: 'Anudado a mano · nudo persa', tibetano: 'Nudo tibetano', kilim: 'Kilim'},
+  nudos_corto: {boucle: 'Bouclé', plano: 'Plano', espiga: 'Espiga', anudado: 'Anudado', tibetano: 'Tibetano', kilim: 'Kilim'},
+  materiales: {'Fibras naturales': 'Fibras naturales'},
+  origenes: {},
+  usos: {},
+  llegadas: {}, detalles: {},
+  alt_portada: 'Alfombra en un living'
+},
+en: {
+  titulo: 'Trama Textiles · Handmade rugs · San Telmo, Buenos Aires',
+  menu_btn: 'Menu', nav_coleccion: 'Collection', nav_ingresos: 'Incoming pieces',
+  nav_nosotros: 'About us', nav_contacto: 'Contact',
+  h1: 'Design rugs handcrafted in natural fibres.',
+  inicio_p: 'Artisanal rugs produced in workshops in India and the Middle East. Sales are in person, at our private gallery in San Telmo, by appointment. We offer personalised advice and worldwide shipping.',
+  dr_mat_dt: 'Materials', dr_mat_dd: 'Wool, jute, cotton and silk',
+  dr_prod_dt: 'Production', dr_prod_dd: 'Artisanal, hand-woven or hand-knotted',
+  dr_gal_dt: 'Gallery', dr_gal_dd: 'San Telmo · by appointment',
+  dr_serv_dt: 'Services', dr_serv_dd: 'Advice and shipping',
+  cab_rotulo: 'Available rugs', h2_coleccion: 'Collection',
+  cab_p: 'Click on a piece to see its technical sheet with in-situ, full-view and weave-detail photos.',
+  filtros_aria: 'Filter by weave type', todas: 'All',
+  pieza_disp: 'piece available', piezas_disp: 'pieces available',
+  dt_ancho: 'Width', dt_largo: 'Length', dt_nudo: 'Knot type', dt_material: 'Material', dt_uso: 'Ideal use',
+  lbl_comparar: 'Compare with', comparacion: 'Comparison',
+  btn_cerrar: 'Close ✕', btn_ampliar: 'Zoom', btn_ant: '← Previous', btn_sig: 'Next →',
+  f_cta: 'Book a visit', ver: 'View', ver_ficha: 'View technical sheet of', zoom_aria: 'Enlarged image',
+  h2_ingresos: 'Incoming pieces', ing_p: 'Pieces in production or on their way. They can be reserved for viewing when they arrive at the gallery.',
+  btn_consultar: 'Enquire',
+  nos_rotulo: 'About us',
+  nos_p: 'A textile specialist for over 50 years. He selects every Trama Textiles piece and works directly with the workshops that produce them.',
+  nos_li1_b: 'Specialities', nos_li1_s: 'Middle-Eastern and Asian textiles · European textiles · Italian painting',
+  nos_li2_b: 'Production', nos_li2_s: 'Artisanal. Every rug is hand-woven or hand-knotted on a loom.',
+  nos_li3_b: 'Materials', nos_li3_s: 'Natural fibres: wool, jute, cotton and silk. Vegetable dyes or undyed fibre.',
+  nos_li4_b: 'Workshops', nos_li4_s: 'Regional artisans in India, such as those of Varanasi, with ethical working conditions and fair pay.',
+  con_rotulo: 'Contact', h2_contacto: 'Private gallery in San Telmo',
+  con_p: 'By appointment only. The exact address is shared once your visit is confirmed.',
+  con_li1_b: 'Location', con_li1_s: 'San Telmo, Buenos Aires',
+  con_li2_b: 'Hours', con_li2_s: 'Tuesday to Saturday · 11 am to 7 pm',
+  con_li3_b: 'Shipping', con_li3_s: 'We arrange shipping of the piece once the purchase is completed',
+  form_aria: 'Request an appointment', lb_nombre: 'Name', lb_estudio: 'Studio / Company',
+  lb_tel: 'Phone', lb_pieza: 'Piece of interest', lb_fecha: 'Preferred date',
+  lb_msg: 'Comments (room, sizes)', btn_submit: 'Request an appointment',
+  opt_default: 'View the full collection', foot_visitas: 'Visits by appointment',
+  mail_asunto: 'Visit request · Trama Textiles',
+  mail_nombre: 'Name', mail_estudio: 'Studio', mail_email: 'Email', mail_tel: 'Phone',
+  mail_pieza: 'Piece', mail_fecha: 'Preferred date',
+  vistas: {situacion: 'In situ', completa: 'Full view', trama: 'Weave · close-up'},
+  nudos: {boucle: 'Bouclé (loop)', plano: 'Flat weave (basket)', espiga: 'Herringbone',
+          anudado: 'Hand-knotted · Persian knot', tibetano: 'Tibetan knot', kilim: 'Kilim'},
+  nudos_corto: {boucle: 'Bouclé', plano: 'Flat weave', espiga: 'Herringbone', anudado: 'Hand-knotted', tibetano: 'Tibetan', kilim: 'Kilim'},
+  materiales: {'Lana': 'Wool', 'Yute': 'Jute', 'Cáñamo': 'Hemp', 'Seda': 'Silk', 'Algodón': 'Cotton',
+               'Fibras naturales': 'Natural fibres', 'Lana y seda': 'Wool and silk',
+               'Lana, yute y algodón': 'Wool, jute and cotton'},
+  origenes: {'Irán · pieza antigua': 'Iran · antique piece'},
+  usos: {'Living · tránsito medio': 'Living room · medium traffic',
+         'Living · bajo tránsito': 'Living room · low traffic',
+         'Living · alto tránsito': 'Living room · high traffic',
+         'Comedor · alto tránsito': 'Dining room · high traffic',
+         'Comedor · tránsito medio': 'Dining room · medium traffic',
+         'Comedor · pasillos': 'Dining room · hallways',
+         'Dormitorio · bajo tránsito': 'Bedroom · low traffic',
+         'Dormitorio · niños': "Children's bedroom",
+         'Dormitorio · pie de cama': 'Bedroom · foot of the bed',
+         'Galerías y espacios semicubiertos': 'Galleries and semi-covered spaces',
+         'Living amplio · alto tránsito': 'Large living room · high traffic',
+         'Recibidor · pasillo': 'Entryway · hallway',
+         'Estudio · bajo tránsito': 'Study · low traffic'},
+  llegadas: {'Noviembre 2026': 'November 2026', 'Diciembre 2026': 'December 2026',
+             'Marzo 2027': 'March 2027', 'En telar': 'On the loom'},
+  detalles: {'6 piezas · lana y seda · anudado': '6 pieces · wool and silk · hand-knotted',
+             '4 piezas · tintes vegetales': '4 pieces · vegetable dyes',
+             'Consultar plazos': 'Ask for lead times'},
+  alt_portada: 'A rug in a living room'
+}};
+let LANG = 'es';
+const t = k => (I18N[LANG] && I18N[LANG][k]) ?? I18N.es[k] ?? k;
+const tv = (dic, s) => (I18N[LANG] && I18N[LANG][dic] && I18N[LANG][dic][s]) || s;
+const nudoNombre = k => (I18N[LANG].nudos && I18N[LANG].nudos[k]) || NUDOS[k].nombre;
+const nudoCorto = k => (I18N[LANG].nudos_corto && I18N[LANG].nudos_corto[k]) || NUDOS[k].nombre.split(' (')[0].split(' ·')[0];
+const vistas = () => t('vistas');
+
 /* ===== Portada y retrato ===== */
-$('portada').innerHTML = roomSVG(PIEZAS[0], 21/9) + realImg('img/portada.jpg', 'Alfombra en un living');
-$('retrato').innerHTML = retratoSVG(PIEZAS[4], PIEZAS[6]) + realImg('img/renato.jpg', 'Renato De Benedictis');
+function pintarPortada(){
+  $('portada').innerHTML = roomSVG(PIEZAS[0], 21/9) + realImg('img/portada.jpg', t('alt_portada'));
+  $('retrato').innerHTML = retratoSVG(PIEZAS[4], PIEZAS[6]) + realImg('img/renato.jpg', 'Renato De Benedictis');
+}
 
 /* ===== Mosaico ===== */
 PIEZAS.forEach((p, i) => p.seed = i + 3);
-$('masonry').innerHTML = PIEZAS.map((p, i) => `
-  <button class="pieza" data-i="${i}" data-nudo="${p.nudo}" aria-label="Ver ficha de ${p.nombre}">
-    <div class="foto" style="aspect-ratio:${p.formato}">
-      ${ilustracion(p, p.portada, ratioNum(p.formato))}${realImg(srcDe(p, p.portada), `Alfombra ${p.nombre}`)}
-    </div>
-    <div class="cartela"><strong>${p.nombre}</strong><span>${p.ancho} × ${p.largo} cm</span></div>
-    <div class="cartela-sub">${NUDOS[p.nudo].nombre} · ${p.material}</div>
-  </button>`).join('');
-
-const usados = [...new Set(PIEZAS.map(p => p.nudo))];
-const corto = k => NUDOS[k].nombre.split(' (')[0].split(' ·')[0];
-$('filtros').innerHTML = `<button aria-pressed="true" data-f="todos">Todas</button>` +
-  usados.map(k => `<button aria-pressed="false" data-f="${k}">${corto(k)}</button>`).join('');
-function contar(){ const n = document.querySelectorAll('.pieza:not(.oculta)').length; $('total').textContent = `${n} ${n === 1 ? 'pieza disponible' : 'piezas disponibles'}`; }
+let filtroActual = 'todos';
+function pintarMosaico(){
+  $('masonry').innerHTML = PIEZAS.map((p, i) => `
+    <button class="pieza${filtroActual !== 'todos' && p.nudo !== filtroActual ? ' oculta' : ''}" data-i="${i}" data-nudo="${p.nudo}" aria-label="${t('ver_ficha')} ${p.nombre}">
+      <div class="foto" style="aspect-ratio:${p.formato}">
+        ${ilustracion(p, p.portada, ratioNum(p.formato))}${realImg(srcDe(p, p.portada), `${p.nombre}`)}
+      </div>
+      <div class="cartela"><strong>${p.nombre}</strong><span>${p.ancho} × ${p.largo} cm</span></div>
+      <div class="cartela-sub">${nudoCorto(p.nudo)} · ${tv('materiales', p.material)}</div>
+    </button>`).join('');
+}
+function pintarFiltros(){
+  const usados = [...new Set(PIEZAS.map(p => p.nudo))];
+  $('filtros').innerHTML = `<button aria-pressed="${filtroActual === 'todos'}" data-f="todos">${t('todas')}</button>` +
+    usados.map(k => `<button aria-pressed="${filtroActual === k}" data-f="${k}">${nudoCorto(k)}</button>`).join('');
+}
+function contar(){ const n = document.querySelectorAll('.pieza:not(.oculta)').length; $('total').textContent = `${n} ${n === 1 ? t('pieza_disp') : t('piezas_disp')}`; }
 $('filtros').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
+  filtroActual = b.dataset.f;
   $('filtros').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
-  document.querySelectorAll('.pieza').forEach(c => c.classList.toggle('oculta', b.dataset.f !== 'todos' && c.dataset.nudo !== b.dataset.f));
+  document.querySelectorAll('.pieza').forEach(c => c.classList.toggle('oculta', filtroActual !== 'todos' && c.dataset.nudo !== filtroActual));
   contar();
 });
-contar();
-$('pieza').insertAdjacentHTML('beforeend', PIEZAS.map(p => `<option>${p.nombre} · ${p.ref}</option>`).join(''));
+function llenarSelect(){
+  const sel = $('pieza'), actual = sel.value;
+  sel.innerHTML = `<option>${t('opt_default')}</option>` + PIEZAS.map(p => `<option>${p.nombre} · ${p.ref}</option>`).join('');
+  if ([...sel.options].some(o => o.value === actual)) sel.value = actual;
+}
 
 /* ===== Ficha técnica ===== */
 const dlg = $('ficha'); let actual = 0, enGrande = null;
@@ -692,34 +832,34 @@ function verGrande(contenido, etq){
   enGrande = {contenido, etq};
   $('principal').innerHTML = contenido + `<span class="etq">${etq}</span>`;
 }
-function vista(p, v){ return {v, etq:VISTAS[v], html:ilustracion(p, v, 4/3) + realImg(srcDe(p, v), `${p.nombre} · ${VISTAS[v]}`)}; }
+function vista(p, v){ return {v, etq:vistas()[v], html:ilustracion(p, v, 4/3) + realImg(srcDe(p, v), `${p.nombre} · ${vistas()[v]}`)}; }
 function abrir(i){
   actual = (i + PIEZAS.length) % PIEZAS.length;
   const p = PIEZAS[actual];
   const pintarMinis = sel => {
     $('minis').innerHTML = ['situacion','completa','trama'].filter(v => v !== sel).map(v => {
       const x = vista(p, v);
-      return `<button class="foto mini" data-v="${v}" aria-label="Ver ${x.etq}">${x.html}<span class="etq">${x.etq}</span></button>`;
+      return `<button class="foto mini" data-v="${v}" aria-label="${t('ver')} ${x.etq}">${x.html}<span class="etq">${x.etq}</span></button>`;
     }).join('');
   };
   const elegir = v => { const x = vista(p, v); verGrande(x.html, x.etq); pintarMinis(v); };
   elegir('situacion');
   $('minis').onclick = e => { const b = e.target.closest('.mini'); if (b) elegir(b.dataset.v); };
 
-  $('f-origen').textContent = p.origen;
+  $('f-origen').textContent = tv('origenes', p.origen);
   $('f-nombre').textContent = p.nombre;
   $('f-ref').textContent = `Ref. ${p.ref}`;
   $('f-ancho').textContent = `${p.ancho} cm`;
   $('f-largo').textContent = `${p.largo} cm`;
-  $('f-nudo').textContent = NUDOS[p.nudo].nombre;
-  $('f-material').textContent = p.material;
-  $('f-uso').textContent = p.uso;
+  $('f-nudo').textContent = nudoNombre(p.nudo);
+  $('f-material').textContent = tv('materiales', p.material);
+  $('f-uso').textContent = tv('usos', p.uso);
   $('f-comparar').innerHTML = p.comparar.map(k => `
-    <button class="nudo" data-k="${k}" title="Ver ${NUDOS[k].nombre}">
-      <div class="foto">${closeSVG(muestra(k), k)}${realImg(`img/nudo-${k}.jpg`, NUDOS[k].nombre)}</div>
-      <small>${NUDOS[k].nombre}</small></button>`).join('');
+    <button class="nudo" data-k="${k}" title="${t('ver')} ${nudoNombre(k)}">
+      <div class="foto">${closeSVG(muestra(k), k)}${realImg(`img/nudo-${k}.jpg`, nudoNombre(k))}</div>
+      <small>${nudoNombre(k)}</small></button>`).join('');
   $('f-comparar').onclick = e => { const b = e.target.closest('.nudo'); if (!b) return; const k = b.dataset.k;
-    verGrande(closeSVG(muestra(k), k) + realImg(`img/nudo-${k}.jpg`, NUDOS[k].nombre), `Comparación · ${NUDOS[k].nombre}`); pintarMinis(null); };
+    verGrande(closeSVG(muestra(k), k) + realImg(`img/nudo-${k}.jpg`, nudoNombre(k)), `${t('comparacion')} · ${nudoNombre(k)}`); pintarMinis(null); };
   $('f-cta').onclick = () => { $('pieza').value = `${p.nombre} · ${p.ref}`; dlg.close(); };
   if (!dlg.open) dlg.showModal();
 }
@@ -738,11 +878,32 @@ zoom.onclick = () => zoom.classList.remove('on');
 document.addEventListener('keydown', e => { if (e.key === 'Escape') zoom.classList.remove('on'); });
 
 /* ===== Próximos ingresos ===== */
-$('ingresos-grid').innerHTML = INGRESOS.map((x, i) => `
-  <article class="ingreso">
-    <div class="foto">${telarSVG({...x, seed:40 + i, ancho:200, largo:300}, x.progreso)}${realImg(`img/${x.id}.jpg`, x.titulo)}</div>
-    <dl><dt>${x.llegada}</dt><dd><strong>${x.titulo}</strong><br>${x.detalle}</dd></dl>
-  </article>`).join('');
+function pintarIngresos(){
+  $('ingresos-grid').innerHTML = INGRESOS.map((x, i) => `
+    <article class="ingreso">
+      <div class="foto">${telarSVG({...x, seed:40 + i, ancho:200, largo:300}, x.progreso)}${realImg(`img/${x.id}.jpg`, x.titulo)}</div>
+      <dl><dt>${tv('llegadas', x.llegada)}</dt><dd><strong>${x.titulo}</strong><br>${tv('detalles', x.detalle)}</dd></dl>
+    </article>`).join('');
+}
+
+/* ===== Idioma: aplicar y persistir ===== */
+function aplicarIdioma(lang){
+  LANG = I18N[lang] ? lang : 'es';
+  try { localStorage.setItem('trama-lang', LANG); } catch (e) {}
+  document.documentElement.lang = LANG;
+  document.title = t('titulo');
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.i18nAria)); });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => { el.title = t(el.dataset.i18nTitle); });
+  $('lang-es').setAttribute('aria-pressed', LANG === 'es');
+  $('lang-en').setAttribute('aria-pressed', LANG === 'en');
+  pintarPortada(); pintarMosaico(); pintarFiltros(); contar(); llenarSelect(); pintarIngresos();
+  if ($('ficha').open) abrir(actual);
+}
+$('lang-es').onclick = () => aplicarIdioma('es');
+$('lang-en').onclick = () => aplicarIdioma('en');
+aplicarIdioma((() => { try { return localStorage.getItem('trama-lang'); } catch (e) { return null; } })()
+  || ((navigator.language || 'es').toLowerCase().startsWith('en') ? 'en' : 'es'));
 
 /* ===== Menú móvil ===== */
 const mb = document.querySelector('.menu-btn'), menu = $('menu');
@@ -752,8 +913,8 @@ menu.querySelectorAll('a').forEach(a => a.onclick = () => menu.classList.remove(
 /* ===== Formulario → email ===== */
 $('form').onsubmit = e => {
   e.preventDefault(); const v = id => $(id).value;
-  const body = `Nombre: ${v('nombre')}\nEstudio: ${v('estudio')}\nEmail: ${v('email')}\nTeléfono: ${v('tel')}\nPieza: ${v('pieza')}\nFecha preferida: ${v('fecha')}\n\n${v('msg')}`;
-  location.href = `mailto:galeria@tramatextiles.com?subject=${encodeURIComponent('Solicitud de visita · Trama Textiles')}&body=${encodeURIComponent(body)}`;
+  const body = `${t('mail_nombre')}: ${v('nombre')}\n${t('mail_estudio')}: ${v('estudio')}\n${t('mail_email')}: ${v('email')}\n${t('mail_tel')}: ${v('tel')}\n${t('mail_pieza')}: ${v('pieza')}\n${t('mail_fecha')}: ${v('fecha')}\n\n${v('msg')}`;
+  location.href = `mailto:galeria@tramatextiles.com?subject=${encodeURIComponent(t('mail_asunto'))}&body=${encodeURIComponent(body)}`;
 };
 </script>
 </body>
